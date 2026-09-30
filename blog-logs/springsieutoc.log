@@ -428,3 +428,49 @@
 2026-09-30T12:39:20.524+07:00  WARN 18888 --- [springsieutoc] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.hoidanit.springsieutoc.helper.exception.ResourceNotFoundException: Token không tồn tại]
 2026-09-30T12:39:37.643+07:00  INFO 18888 --- [springsieutoc] [http-nio-8080-exec-2] v.h.s.controller.AuthController          : username: admin@gmail.com, password: 333333
 2026-09-30T14:24:21.699+07:00  WARN 18888 --- [springsieutoc] [HikariPool-2:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h24m59s782ms28µs500ns).
+2026-09-30T18:41:43.802+07:00  INFO 8564 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 8564 (D:\IT_Project\blog\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\blog)
+2026-09-30T18:41:43.804+07:00  INFO 8564 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-09-30T18:41:43.842+07:00  INFO 8564 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T18:41:43.843+07:00  INFO 8564 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T18:41:44.639+07:00  INFO 8564 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T18:41:44.719+07:00  INFO 8564 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 70 ms. Found 6 JPA repository interfaces.
+2026-09-30T18:41:45.315+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T18:41:45.329+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T18:41:45.330+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T18:41:45.380+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T18:41:45.381+07:00  INFO 8564 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1537 ms
+2026-09-30T18:41:45.639+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T18:41:45.678+07:00  INFO 8564 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T18:41:45.705+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T18:41:45.933+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T18:41:45.963+07:00  INFO 8564 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T18:41:46.236+07:00  INFO 8564 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41ef4820
+2026-09-30T18:41:46.238+07:00  INFO 8564 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T18:41:46.308+07:00  INFO 8564 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T18:41:47.035+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T18:41:47.118+07:00  INFO 8564 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T18:41:47.707+07:00  INFO 8564 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T18:41:47.750+07:00  WARN 8564 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T18:41:48.251+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T18:41:48.280+07:00  INFO 8564 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T18:41:48.295+07:00  INFO 8564 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 4.907 seconds (process running for 5.275)
+2026-09-30T18:41:48.577+07:00  INFO 8564 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-09-30T18:41:48.581+07:00  WARN 8564 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T18:41:48.581+07:00  WARN 8564 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-30T18:42:05.779+07:00  INFO 8564 --- [springsieutoc] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-30T18:42:05.780+07:00  INFO 8564 --- [springsieutoc] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-30T18:42:05.781+07:00  INFO 8564 --- [springsieutoc] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-09-30T18:42:06.315+07:00  WARN 8564 --- [springsieutoc] [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-09-30T18:42:11.253+07:00  INFO 8564 --- [springsieutoc] [http-nio-8080-exec-6] v.spring.blog.controller.AuthController  : username: user@gmail.com, password: 333333
+2026-09-30T18:42:21.062+07:00  INFO 8564 --- [springsieutoc] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-30T18:42:21.067+07:00  INFO 8564 --- [springsieutoc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-09-30T18:42:21.072+07:00  INFO 8564 --- [springsieutoc] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T18:42:21.075+07:00  INFO 8564 --- [springsieutoc] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T18:42:21.081+07:00  INFO 8564 --- [springsieutoc] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
