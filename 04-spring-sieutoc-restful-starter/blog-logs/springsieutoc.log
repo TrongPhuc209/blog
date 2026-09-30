@@ -1,0 +1,544 @@
+2026-09-30T00:19:54.381+07:00  INFO 8972 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 8972 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T00:19:54.387+07:00  INFO 8972 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T00:19:54.440+07:00  INFO 8972 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T00:19:54.441+07:00  INFO 8972 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T00:19:55.307+07:00  INFO 8972 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T00:19:55.385+07:00  INFO 8972 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 6 JPA repository interfaces.
+2026-09-30T00:19:56.044+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T00:19:56.058+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T00:19:56.059+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T00:19:56.112+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T00:19:56.112+07:00  INFO 8972 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1670 ms
+2026-09-30T00:19:56.322+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T00:19:56.369+07:00  INFO 8972 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T00:19:56.396+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T00:19:56.643+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T00:19:56.672+07:00  INFO 8972 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T00:19:56.997+07:00  INFO 8972 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e5fb565
+2026-09-30T00:19:56.999+07:00  INFO 8972 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T00:19:57.081+07:00  INFO 8972 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T00:19:57.827+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T00:19:57.909+07:00  INFO 8972 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T00:19:58.539+07:00  INFO 8972 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T00:19:58.585+07:00  WARN 8972 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T00:19:59.185+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T00:19:59.217+07:00  INFO 8972 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T00:19:59.231+07:00  INFO 8972 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 5.532 seconds (process running for 5.893)
+2026-09-30T00:19:59.235+07:00  WARN 8972 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T00:19:59.236+07:00  WARN 8972 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-30T00:20:03.355+07:00  INFO 8972 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-30T00:20:03.355+07:00  INFO 8972 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-09-30T00:20:03.357+07:00  INFO 8972 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-09-30T09:57:58.518+07:00  WARN 8972 --- [springsieutoc] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=8h38m476ms78µs400ns).
+2026-09-30T10:02:04.149+07:00  INFO 8972 --- [springsieutoc] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-09-30T10:02:04.161+07:00  INFO 8972 --- [springsieutoc] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-30T10:02:04.180+07:00  INFO 8972 --- [springsieutoc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-09-30T10:02:04.201+07:00  INFO 8972 --- [springsieutoc] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:02:04.213+07:00  INFO 8972 --- [springsieutoc] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T10:02:04.225+07:00  INFO 8972 --- [springsieutoc] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-30T10:02:04.552+07:00  INFO 8972 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 8972 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:02:04.553+07:00  INFO 8972 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:02:04.884+07:00  WARN 8972 --- [springsieutoc] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
+2026-09-30T10:02:04.900+07:00  INFO 8972 --- [springsieutoc] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-30T10:02:04.927+07:00 ERROR 8972 --- [springsieutoc] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.IllegalStateException: Error processing condition on org.springframework.boot.autoconfigure.context.PropertyPlaceholderAutoConfiguration.propertySourcesPlaceholderConfigurer
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:60)
+	at org.springframework.context.annotation.ConditionEvaluator.shouldSkip(ConditionEvaluator.java:99)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForBeanMethod(ConfigurationClassBeanDefinitionReader.java:183)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:144)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:430)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:791)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:609)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at vn.hoidanit.springsieutoc.SpringsieutocApplication.main(SpringsieutocApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [vn.hoidanit.springsieutoc.config.SecurityConfig] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@273fc85b]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:483)
+	at org.springframework.util.ReflectionUtils.doWithMethods(ReflectionUtils.java:360)
+	at org.springframework.util.ReflectionUtils.getUniqueDeclaredMethods(ReflectionUtils.java:417)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.lambda$getTypeForFactoryMethod$1(AbstractAutowireCapableBeanFactory.java:757)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1724)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getTypeForFactoryMethod(AbstractAutowireCapableBeanFactory.java:756)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineTargetType(AbstractAutowireCapableBeanFactory.java:689)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.predictBeanType(AbstractAutowireCapableBeanFactory.java:660)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.isFactoryBean(AbstractBeanFactory.java:1715)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doGetBeanNamesForType(DefaultListableBeanFactory.java:640)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:612)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeanNamesForType(DefaultListableBeanFactory.java:597)
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.collectBeanDefinitionsForType(OnBeanCondition.java:322)
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getBeanDefinitionsForType(OnBeanCondition.java:314)
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchingBeans(OnBeanCondition.java:214)
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.evaluateConditionalOnMissingBean(OnBeanCondition.java:197)
+	at org.springframework.boot.autoconfigure.condition.OnBeanCondition.getMatchOutcome(OnBeanCondition.java:144)
+	at org.springframework.boot.autoconfigure.condition.SpringBootCondition.matches(SpringBootCondition.java:47)
+	... 20 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: CorsConfigurationSource
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3010)
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2329)
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:465)
+	... 37 common frames omitted
+Caused by: java.lang.ClassNotFoundException: CorsConfigurationSource
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:580)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:547)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:490)
+	... 41 common frames omitted
+
+2026-09-30T10:31:20.423+07:00  INFO 7620 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 7620 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:31:20.425+07:00  INFO 7620 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:31:20.464+07:00  INFO 7620 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:31:20.465+07:00  INFO 7620 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:31:21.321+07:00  INFO 7620 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:31:21.392+07:00  INFO 7620 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 61 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:31:22.006+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:31:22.025+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:31:22.026+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:31:22.090+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:31:22.091+07:00  INFO 7620 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1626 ms
+2026-09-30T10:31:22.314+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:31:22.352+07:00  INFO 7620 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:31:22.381+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:31:22.633+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:31:22.662+07:00  INFO 7620 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:31:22.940+07:00  INFO 7620 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c47a2e3
+2026-09-30T10:31:22.943+07:00  INFO 7620 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:31:23.019+07:00  INFO 7620 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:31:23.779+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:31:24.255+07:00  INFO 7620 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:31:24.701+07:00  WARN 7620 --- [springsieutoc] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [vn/hoidanit/springsieutoc/config/SecurityConfig.class]: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+2026-09-30T10:31:24.702+07:00  INFO 7620 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:31:24.705+07:00  INFO 7620 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T10:31:24.722+07:00  INFO 7620 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-30T10:31:24.726+07:00  INFO 7620 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-30T10:31:24.739+07:00  INFO 7620 --- [springsieutoc] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-30T10:31:24.753+07:00 ERROR 7620 --- [springsieutoc] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [vn/hoidanit/springsieutoc/config/SecurityConfig.class]: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:489)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at vn.hoidanit.springsieutoc.SpringsieutocApplication.main(SpringsieutocApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 24 common frames omitted
+Caused by: java.lang.ClassCastException: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at vn.hoidanit.springsieutoc.config.SecurityConfig.corsConfigurationSource(SecurityConfig.java:79)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$0.CGLIB$corsConfigurationSource$3(<generated>)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:400)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$0.corsConfigurationSource(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+	... 27 common frames omitted
+
+2026-09-30T10:37:51.243+07:00  INFO 15328 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 15328 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:37:51.244+07:00  INFO 15328 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:37:51.287+07:00  INFO 15328 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:37:51.288+07:00  INFO 15328 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:37:52.149+07:00  INFO 15328 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:37:52.306+07:00  INFO 15328 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:37:53.353+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:37:53.367+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:37:53.368+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:37:53.427+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:37:53.428+07:00  INFO 15328 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2139 ms
+2026-09-30T10:37:53.649+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:37:53.694+07:00  INFO 15328 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:37:53.725+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:37:53.956+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:37:53.987+07:00  INFO 15328 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:37:54.291+07:00  INFO 15328 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17cda8fe
+2026-09-30T10:37:54.294+07:00  INFO 15328 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:37:54.396+07:00  INFO 15328 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:37:55.361+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:37:55.454+07:00  INFO 15328 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:37:56.055+07:00  WARN 15328 --- [springsieutoc] [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [vn/hoidanit/springsieutoc/config/SecurityConfig.class]: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+2026-09-30T10:37:56.057+07:00  INFO 15328 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:37:56.072+07:00  INFO 15328 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T10:37:56.084+07:00  INFO 15328 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-30T10:37:56.090+07:00  INFO 15328 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-09-30T10:37:56.113+07:00  INFO 15328 --- [springsieutoc] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-30T10:37:56.140+07:00 ERROR 15328 --- [springsieutoc] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsConfigurationSource' defined in class path resource [vn/hoidanit/springsieutoc/config/SecurityConfig.class]: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:489)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1221)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1187)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1123)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:987)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at vn.hoidanit.springsieutoc.SpringsieutocApplication.main(SpringsieutocApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.CorsConfigurationSource]: Factory method 'corsConfigurationSource' threw exception with message: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 24 common frames omitted
+Caused by: java.lang.ClassCastException: class org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.CorsConfigurationSource (org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource and org.springframework.web.cors.CorsConfigurationSource are in unnamed module of loader 'app')
+	at vn.hoidanit.springsieutoc.config.SecurityConfig.corsConfigurationSource(SecurityConfig.java:79)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$0.CGLIB$corsConfigurationSource$2(<generated>)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:400)
+	at vn.hoidanit.springsieutoc.config.SecurityConfig$$SpringCGLIB$$0.corsConfigurationSource(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+	... 27 common frames omitted
+
+2026-09-30T10:41:42.643+07:00  INFO 10472 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 10472 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:41:42.645+07:00  INFO 10472 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:41:42.687+07:00  INFO 10472 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:41:42.687+07:00  INFO 10472 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:41:43.648+07:00  INFO 10472 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:41:43.718+07:00  INFO 10472 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:41:44.370+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:41:44.385+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:41:44.385+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:41:44.437+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:41:44.438+07:00  INFO 10472 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1750 ms
+2026-09-30T10:41:44.658+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:41:44.697+07:00  INFO 10472 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:41:44.728+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:41:45.026+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:41:45.066+07:00  INFO 10472 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:41:45.509+07:00  INFO 10472 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62e3541b
+2026-09-30T10:41:45.512+07:00  INFO 10472 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:41:45.595+07:00  INFO 10472 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:41:46.414+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:41:46.488+07:00  INFO 10472 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:41:47.069+07:00  INFO 10472 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T10:41:47.121+07:00  WARN 10472 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T10:41:47.699+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T10:41:47.735+07:00  INFO 10472 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T10:41:47.746+07:00  INFO 10472 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 5.546 seconds (process running for 5.887)
+2026-09-30T10:41:47.750+07:00  WARN 10472 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T10:41:47.751+07:00  WARN 10472 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-30T10:42:38.821+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 9436 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:42:38.823+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:42:38.861+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:42:38.862+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:42:39.678+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:42:39.758+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 71 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:42:40.471+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:42:40.489+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:42:40.490+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:42:40.545+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:42:40.546+07:00  INFO 9436 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1683 ms
+2026-09-30T10:42:40.745+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:42:40.787+07:00  INFO 9436 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:42:40.810+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:42:41.049+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:42:41.076+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:42:41.431+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@17cda8fe
+2026-09-30T10:42:41.433+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:42:41.494+07:00  INFO 9436 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:42:42.180+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:42:42.258+07:00  INFO 9436 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:42:42.837+07:00  INFO 9436 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T10:42:42.880+07:00  WARN 9436 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T10:42:43.487+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T10:42:43.516+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T10:42:43.526+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 5.126 seconds (process running for 5.476)
+2026-09-30T10:42:43.530+07:00  WARN 9436 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T10:42:43.531+07:00  WARN 9436 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-30T10:44:46.786+07:00  INFO 9436 --- [springsieutoc] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (1 addition, 0 deletions, 0 modifications)
+2026-09-30T10:44:46.789+07:00  INFO 9436 --- [springsieutoc] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-30T10:44:46.795+07:00  INFO 9436 --- [springsieutoc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-09-30T10:44:46.800+07:00  INFO 9436 --- [springsieutoc] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:44:46.805+07:00  INFO 9436 --- [springsieutoc] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T10:44:46.810+07:00  INFO 9436 --- [springsieutoc] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-30T10:44:46.980+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 9436 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:44:46.980+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:44:47.218+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:44:47.247+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 28 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:44:47.342+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:44:47.343+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:44:47.343+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:44:47.366+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:44:47.366+07:00  INFO 9436 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 383 ms
+2026-09-30T10:44:47.407+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:44:47.409+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:44:47.418+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:44:47.419+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-09-30T10:44:47.433+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1da109cb
+2026-09-30T10:44:47.433+07:00  INFO 9436 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-09-30T10:44:47.434+07:00  INFO 9436 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:44:47.555+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:44:47.590+07:00  INFO 9436 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:44:47.777+07:00  INFO 9436 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T10:44:47.783+07:00  WARN 9436 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T10:44:47.954+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T10:44:47.963+07:00  INFO 9436 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T10:44:47.967+07:00  INFO 9436 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 1.098 seconds (process running for 129.918)
+2026-09-30T10:44:47.969+07:00  INFO 9436 --- [springsieutoc] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-09-30T10:44:47.970+07:00  WARN 9436 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T10:44:47.970+07:00  WARN 9436 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-09-30T10:52:20.091+07:00  INFO 19184 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 19184 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:52:20.092+07:00  INFO 19184 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:52:20.132+07:00  INFO 19184 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:52:20.133+07:00  INFO 19184 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:52:20.952+07:00  INFO 19184 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:52:21.028+07:00  INFO 19184 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:52:21.654+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:52:21.670+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:52:21.670+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:52:21.719+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:52:21.719+07:00  INFO 19184 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1586 ms
+2026-09-30T10:52:21.926+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:52:21.971+07:00  INFO 19184 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:52:22.006+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:52:22.230+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:52:22.256+07:00  INFO 19184 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:52:22.558+07:00  INFO 19184 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@609d6a96
+2026-09-30T10:52:22.560+07:00  INFO 19184 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:52:22.633+07:00  INFO 19184 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:52:23.439+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:52:23.525+07:00  INFO 19184 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:52:24.166+07:00  INFO 19184 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T10:52:24.210+07:00  WARN 19184 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T10:52:24.802+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T10:52:24.839+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T10:52:24.853+07:00  INFO 19184 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 5.189 seconds (process running for 5.531)
+2026-09-30T10:52:25.277+07:00  INFO 19184 --- [springsieutoc] [restartedMain] v.h.springsieutoc.service.DataSeeder     : --- START DATA SEEDER ---
+2026-09-30T10:52:25.521+07:00  INFO 19184 --- [springsieutoc] [restartedMain] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-09-30T10:52:25.538+07:00 ERROR 19184 --- [springsieutoc] [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.NullPointerException: Cannot invoke "java.util.Optional.get()" because the return value of "vn.hoidanit.springsieutoc.helper.SecurityUtil.getCurrentIdUserLogin()" is null
+	at vn.hoidanit.springsieutoc.model.Post.beforeCreate(Post.java:69)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.hibernate.jpa.event.internal.EntityCallback.performCallback(EntityCallback.java:50)
+	at org.hibernate.jpa.event.internal.CallbackRegistryImpl.callback(CallbackRegistryImpl.java:123)
+	at org.hibernate.jpa.event.internal.CallbackRegistryImpl.preCreate(CallbackRegistryImpl.java:72)
+	at org.hibernate.event.internal.AbstractSaveEventListener.performSave(AbstractSaveEventListener.java:199)
+	at org.hibernate.event.internal.AbstractSaveEventListener.saveWithGeneratedId(AbstractSaveEventListener.java:136)
+	at org.hibernate.event.internal.DefaultPersistEventListener.entityIsTransient(DefaultPersistEventListener.java:177)
+	at org.hibernate.event.internal.DefaultPersistEventListener.persist(DefaultPersistEventListener.java:95)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:79)
+	at org.hibernate.event.internal.DefaultPersistEventListener.onPersist(DefaultPersistEventListener.java:55)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.firePersist(SessionImpl.java:761)
+	at org.hibernate.internal.SessionImpl.persist(SessionImpl.java:745)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$SharedEntityManagerInvocationHandler.invoke(SharedEntityManagerCreator.java:320)
+	at jdk.proxy4/jdk.proxy4.$Proxy139.persist(Unknown Source)
+	at org.springframework.data.jpa.repository.support.SimpleJpaRepository.save(SimpleJpaRepository.java:654)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker$RepositoryFragmentMethodInvoker.lambda$new$0(RepositoryMethodInvoker.java:277)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:170)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:158)
+	at org.springframework.data.repository.core.support.RepositoryComposition$RepositoryFragments.invoke(RepositoryComposition.java:515)
+	at org.springframework.data.repository.core.support.RepositoryComposition.invoke(RepositoryComposition.java:284)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport$ImplementationMethodExecutionInterceptor.invoke(RepositoryFactorySupport.java:734)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:174)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:149)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:69)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:138)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:165)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:223)
+	at jdk.proxy4/jdk.proxy4.$Proxy152.save(Unknown Source)
+	at vn.hoidanit.springsieutoc.service.DataSeeder.run(DataSeeder.java:143)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:360)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:196)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:380)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:728)
+	at vn.hoidanit.springsieutoc.service.DataSeeder$$SpringCGLIB$$0.run(<generated>)
+	at org.springframework.boot.SpringApplication.lambda$callRunner$5(SpringApplication.java:788)
+	at org.springframework.util.function.ThrowingConsumer$1.acceptWithException(ThrowingConsumer.java:82)
+	at org.springframework.util.function.ThrowingConsumer.accept(ThrowingConsumer.java:60)
+	at org.springframework.util.function.ThrowingConsumer$1.accept(ThrowingConsumer.java:86)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:796)
+	at org.springframework.boot.SpringApplication.callRunner(SpringApplication.java:787)
+	at org.springframework.boot.SpringApplication.lambda$callRunners$3(SpringApplication.java:772)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:186)
+	at java.base/java.util.stream.SortedOps$SizedRefSortingSink.end(SortedOps.java:357)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:571)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:560)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:153)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:176)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:632)
+	at org.springframework.boot.SpringApplication.callRunners(SpringApplication.java:772)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:325)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350)
+	at vn.hoidanit.springsieutoc.SpringsieutocApplication.main(SpringsieutocApplication.java:10)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+
+2026-09-30T10:52:25.544+07:00  INFO 19184 --- [springsieutoc] [restartedMain] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-09-30T10:52:25.553+07:00  INFO 19184 --- [springsieutoc] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-09-30T10:52:25.561+07:00  INFO 19184 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:52:25.566+07:00  INFO 19184 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-09-30T10:52:25.572+07:00  INFO 19184 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-09-30T10:56:01.515+07:00  INFO 19448 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Starting SpringsieutocApplication using Java 25.0.2 with PID 19448 (D:\IT_Project\04-spring-sieutoc-restful-starter\target\classes started by Admin in D:\IT_Project\04-spring-sieutoc-restful-starter)
+2026-09-30T10:56:01.517+07:00  INFO 19448 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : The following 1 profile is active: "prod"
+2026-09-30T10:56:01.553+07:00  INFO 19448 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-09-30T10:56:01.553+07:00  INFO 19448 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-09-30T10:56:02.341+07:00  INFO 19448 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-09-30T10:56:02.418+07:00  INFO 19448 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 6 JPA repository interfaces.
+2026-09-30T10:56:03.034+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-09-30T10:56:03.045+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-09-30T10:56:03.046+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-09-30T10:56:03.092+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-09-30T10:56:03.093+07:00  INFO 19448 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1538 ms
+2026-09-30T10:56:03.290+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-09-30T10:56:03.334+07:00  INFO 19448 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-09-30T10:56:03.357+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-09-30T10:56:03.575+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-09-30T10:56:03.599+07:00  INFO 19448 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-09-30T10:56:03.870+07:00  INFO 19448 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@67b2a4dc
+2026-09-30T10:56:03.872+07:00  INFO 19448 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-09-30T10:56:03.954+07:00  INFO 19448 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-09-30T10:56:04.714+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-09-30T10:56:04.788+07:00  INFO 19448 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-09-30T10:56:05.347+07:00  INFO 19448 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-09-30T10:56:05.392+07:00  WARN 19448 --- [springsieutoc] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/auth/login, /auth/refresh, /auth/refresh-with-cookie, auth/register, /v3/api-docs/**, /swagger-ui/**, /swagger-id.html] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2026-09-30T10:56:05.979+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-09-30T10:56:06.011+07:00  INFO 19448 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-09-30T10:56:06.019+07:00  INFO 19448 --- [springsieutoc] [restartedMain] v.h.s.SpringsieutocApplication           : Started SpringsieutocApplication in 4.925 seconds (process running for 5.284)
+2026-09-30T10:56:06.327+07:00  INFO 19448 --- [springsieutoc] [restartedMain] v.h.springsieutoc.service.DataSeeder     : --- START DATA SEEDER ---
+2026-09-30T10:56:06.564+07:00  INFO 19448 --- [springsieutoc] [restartedMain] v.h.springsieutoc.service.DataSeeder     : --- FINISH DATA SEEDER ---
+2026-09-30T10:56:06.571+07:00  WARN 19448 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-09-30T10:56:06.571+07:00  WARN 19448 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'

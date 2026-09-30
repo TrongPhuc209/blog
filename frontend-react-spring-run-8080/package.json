@@ -1,0 +1,17 @@
+{
+  "name": "frontend-react-springsieutoc",
+  "version": "1.0.0",
+  "private": true,
+  "author": {
+    "name": "Hỏi Dân IT vs Eric",
+    "url": "https://hoidanit.vn"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "dotenv": "17.2.3",
+    "express": "5.2.1"
+  }
+}

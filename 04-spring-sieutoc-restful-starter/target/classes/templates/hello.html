@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Title test hello with template engine</title>
+
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+<script th:src="@{/js/script.js}"></script>
+
+</head>
+
+<body>
+The content of the document......
+<h1>test css</h1>
+<h1 th:text="${name}"/>
+<h1 th:text="${name}"> </h1>
+<h1 th:text="${name}"> my default value </h1>
+</body>
+
+</html>
