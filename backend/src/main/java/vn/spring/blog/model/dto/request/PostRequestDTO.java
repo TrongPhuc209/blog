@@ -28,10 +28,6 @@ public class PostRequestDTO {
   @Valid 
   private List<InputTag> tag;
 
-  @NotNull (message = "User không được để trống")
-  @Valid 
-  private InputUser user;
-
   @Getter 
   @Setter 
   @NoArgsConstructor 
@@ -44,12 +40,4 @@ public class PostRequestDTO {
     private String name;
   }
 
-  @Getter 
-  @Setter 
-  @NoArgsConstructor 
-  @AllArgsConstructor 
-  public static class InputUser{
-    @NotNull(message = "User.id không được phép để trống")
-    private int id;
-  }
 }

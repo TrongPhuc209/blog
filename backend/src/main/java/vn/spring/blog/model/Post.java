@@ -21,7 +21,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import vn.spring.blog.helper.SecurityUtil;
 
 @Entity
 @Table(name = "posts")
@@ -65,6 +64,7 @@ public class Post {
 		this.createdAt = Instant.now();
 		this.updatedAt = Instant.now();
 
+		// trường hợp dòng này sẽ làm sập chương trình là khi tạo post bằng code ở server khi chưa login
 		// User u = new User();
 		// int userId = SecurityUtil.getCurrentIdUserLogin().get();
 		// u.setId(userId);

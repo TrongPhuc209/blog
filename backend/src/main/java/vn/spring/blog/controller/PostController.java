@@ -1,8 +1,5 @@
 package vn.spring.blog.controller;
 
-import java.util.List;
-
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,6 +48,7 @@ public class PostController {
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ApiResponse<String>> detelePost(@PathVariable Long id){
-    return ApiResponse.success(postService.deletePost(id));
+    postService.deletePost(id);
+    return ApiResponse.success("Delete success");
   }
 }

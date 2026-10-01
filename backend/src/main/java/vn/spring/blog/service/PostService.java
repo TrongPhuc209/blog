@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import vn.spring.blog.helper.SecurityUtil;
+import vn.spring.blog.helper.exception.ForbiddenException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
@@ -54,26 +56,27 @@ public class PostService {
           .collect(Collectors.toList());
       p.setTags(tags);
     }
-    if (dto.getUser() != null) {
-      User u = userRepository.findById(dto.getUser().getId())
-          .orElseThrow(() -> new ResourceNotFoundException("User có id: " + dto.getUser().getId() + " không tồn tại!"));
-      p.setUser(u);
-    }
     return p;
   }
 
   public PostResponseDTO createPost(PostRequestDTO inputPost) {
     Post p = convertDtoToPost(inputPost, new Post());
+    
+    int currentUserId = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
+    User u = userRepository.findById(currentUserId)
+    .orElseThrow(() -> new ResourceNotFoundException("User có id: " + currentUserId + " không tồn tại!"));
+    p.setUser(u);
+
     postRepository.save(p);
     return convertPostToDTO(p);
   }
 
   public Page<PostResponseDTO> getAllPost(PostFilterRequestDTO postFilter, Pageable pageable) {
     Specification<Post> spec = Specification.allOf(PostSpecification.hasTitle(postFilter),
-                                                  PostSpecification.hasContent(postFilter),
-                                                  PostSpecification.hasUserId(postFilter),
-                                                  PostSpecification.hasTagName(postFilter),
-                                                  PostSpecification.createAtFromTo(postFilter));
+        PostSpecification.hasContent(postFilter),
+        PostSpecification.hasUserId(postFilter),
+        PostSpecification.hasTagName(postFilter),
+        PostSpecification.createAtFromTo(postFilter));
     return postRepository.findAll(spec, pageable).map(p -> convertPostToDTO(p));
   }
 
@@ -85,6 +88,9 @@ public class PostService {
   public PostResponseDTO updatePost(PostRequestDTO inputPost, Long id) {
     Post currentPost = postRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Post với id: " + id + " không tồn tại"));
+    if (!canModifyPost(currentPost)) {
+      throw new ForbiddenException("Bạn không có quyền sửa bài viết này");
+    }
 
     currentPost = convertDtoToPost(inputPost, currentPost);
 
@@ -92,13 +98,27 @@ public class PostService {
     return convertPostToDTO(currentPost);
   }
 
-  public String deletePost(Long id) {
-    boolean check = postRepository.existsById(id);
-    if (check) {
+  public void deletePost(Long id) {
+    Post currentPost = postRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Post với id: " + id + " không tồn tại"));
+ 
+    boolean checkForbidden = canModifyPost(currentPost);
+    if (checkForbidden) {
       postRepository.deleteById(id);
-      return "Delete success";
     }
-    return "Detele fail";
+    throw new ForbiddenException("Bạn không có quyền xóa post này");
   }
 
+  private boolean canModifyPost(Post currentPost) {
+
+    int userLogin = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
+    String roleLogin = SecurityUtil.getCurrentRoleLogin();
+    int userInPost = currentPost.getUser().getId();
+
+    if ("ADMIN".equals(roleLogin) || userLogin == userInPost) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

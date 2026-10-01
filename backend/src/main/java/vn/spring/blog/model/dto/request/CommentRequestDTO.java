@@ -18,22 +18,8 @@ public class CommentRequestDTO {
 	private String content;
 
   @Valid 
-  @NotNull (message = "Comment.user không được để trống")
-	private InputUser user;
-
-  @Valid 
   @NotNull (message = "Comment.post không được để trống")
 	private InputPost post;
-
-  @Getter 
-  @Setter 
-  @NoArgsConstructor 
-  @AllArgsConstructor 
-  @Builder 
-  public static class InputUser{
-    @NotNull 
-    private int id;
-  }
 
   @Getter 
   @Setter 

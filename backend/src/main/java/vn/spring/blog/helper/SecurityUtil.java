@@ -22,6 +22,11 @@ public class SecurityUtil {
     return extractUserIdLogin(authentication);
   }
 
+  public static String getCurrentRoleLogin(){
+    Authentication authentication = getAuthentication();
+    return extractRole(authentication);
+  }
+
   private static String extractUsername(Authentication authentication){
     if(authentication == null){
       return null;
@@ -56,5 +61,20 @@ public class SecurityUtil {
       }
     }
     return Optional.empty();
+  }
+
+  private static String extractRole(Authentication authentication){
+    if(authentication == null){
+      return null;
+    }
+    Object principal = authentication.getPrincipal();
+    if(principal instanceof Jwt jwt){
+      String claimRole = jwt.getClaimAsString("role");
+      if(claimRole == null){
+        return null;
+      }
+      return claimRole;
+    }
+    return null;
   }
 }

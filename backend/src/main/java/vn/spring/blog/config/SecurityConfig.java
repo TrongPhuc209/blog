@@ -89,14 +89,18 @@ public class SecurityConfig {
     String[] WHITELIST = {"/auth/login",
                          "/auth/refresh",
                           "/auth/refresh-with-cookie",
-                          "auth/register",
+                          "/auth/register",
                           "/v3/api-docs/**",
                           "/swagger-ui/**",
                           "/swagger-id.html",
     };
 
+    String[] ADMIN_WHITELIST = {"/users/**",
+                                "/roles/**"
+    };
+
     http.authorizeHttpRequests((request) -> request.requestMatchers(WHITELIST).permitAll()
-        .requestMatchers("/users/**").hasRole("ADMIN")
+        .requestMatchers(ADMIN_WHITELIST).hasRole("ADMIN")
         .anyRequest().authenticated());
 
     http.csrf(c -> c.disable());
