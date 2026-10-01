@@ -105,8 +105,9 @@ public class PostService {
     boolean checkForbidden = canModifyPost(currentPost);
     if (checkForbidden) {
       postRepository.deleteById(id);
+    } else {
+      throw new ForbiddenException("Bạn không có quyền xóa post này");
     }
-    throw new ForbiddenException("Bạn không có quyền xóa post này");
   }
 
   private boolean canModifyPost(Post currentPost) {

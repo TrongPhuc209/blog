@@ -17,6 +17,7 @@ import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
 import vn.spring.blog.model.Role;
 import vn.spring.blog.model.dto.request.RoleFilterRequestDTO;
+import vn.spring.blog.model.dto.request.RoleRequestDTO;
 import vn.spring.blog.model.dto.response.RoleResponseDTO;
 import vn.spring.blog.service.RoleService;
 
@@ -27,7 +28,7 @@ public class RoleController {
   private final RoleService roleService;
 
   @PostMapping
-  public ResponseEntity<ApiResponse<Role>> createRole(@Valid @RequestBody Role inputRole){
+  public ResponseEntity<ApiResponse<RoleResponseDTO>> createRole(@Valid @RequestBody RoleRequestDTO inputRole){
     return ApiResponse.created(roleService.createRole(inputRole));
   }
 
@@ -42,9 +43,8 @@ public class RoleController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ApiResponse<RoleResponseDTO>> updateRole(@PathVariable Long id, @Valid @RequestBody Role inputRole){
-    inputRole.setId(id);
-    return ApiResponse.success(roleService.updateRole(inputRole));
+  public ResponseEntity<ApiResponse<RoleResponseDTO>> updateRole(@PathVariable Long id, @Valid @RequestBody RoleRequestDTO inputRole){
+    return ApiResponse.success(roleService.updateRole(id ,inputRole));
   }
 
   @DeleteMapping("/{id}")

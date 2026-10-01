@@ -8,6 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -90,17 +91,26 @@ public class SecurityConfig {
                          "/auth/refresh",
                           "/auth/refresh-with-cookie",
                           "/auth/register",
+                          // swagger
                           "/v3/api-docs/**",
                           "/swagger-ui/**",
                           "/swagger-id.html",
     };
 
     String[] ADMIN_WHITELIST = {"/users/**",
-                                "/roles/**"
+                                "/roles/**",
+    };
+
+    String[] ADMIN_PUT_WHITELIST = {"/tags/{id}"
+    };
+
+    String[] ADMIN_DELETE_WHITELIST = {"/tags/{id}"
     };
 
     http.authorizeHttpRequests((request) -> request.requestMatchers(WHITELIST).permitAll()
         .requestMatchers(ADMIN_WHITELIST).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.PUT, ADMIN_PUT_WHITELIST).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.DELETE, ADMIN_DELETE_WHITELIST).hasRole("ADMIN")
         .anyRequest().authenticated());
 
     http.csrf(c -> c.disable());

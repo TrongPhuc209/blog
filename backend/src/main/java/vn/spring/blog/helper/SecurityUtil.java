@@ -69,7 +69,7 @@ public class SecurityUtil {
     }
     Object principal = authentication.getPrincipal();
     if(principal instanceof Jwt jwt){
-      String claimRole = jwt.getClaimAsString("role");
+      String claimRole = jwt.getClaimAsString("scope");
       if(claimRole == null){
         return null;
       }

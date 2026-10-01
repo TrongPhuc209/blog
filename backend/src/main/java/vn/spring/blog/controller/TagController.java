@@ -17,6 +17,7 @@ import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
 import vn.spring.blog.model.Tag;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
+import vn.spring.blog.model.dto.request.TagRequestDTO;
 import vn.spring.blog.model.dto.response.TagResponseDTO;
 import vn.spring.blog.service.TagService;
 
@@ -27,12 +28,12 @@ public class TagController {
   private final TagService tagService;
 
   @PostMapping
-  public ResponseEntity<ApiResponse<Tag>> createTag(@Valid @RequestBody Tag tag){
-    return ApiResponse.created(tagService.createTag(tag));
+  public ResponseEntity<ApiResponse<TagResponseDTO>> createTag(@Valid @RequestBody TagRequestDTO inputTag){
+    return ApiResponse.created(tagService.createTag(inputTag));
   }
 
   @GetMapping("/{id}")
-  public ResponseEntity<ApiResponse<Tag>> getById(@PathVariable Long id){
+  public ResponseEntity<ApiResponse<TagResponseDTO>> getById(@PathVariable Long id){
     return ApiResponse.success(tagService.getTagById(id));
   }
 
@@ -42,14 +43,13 @@ public class TagController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ApiResponse<Tag>> updateTag(@PathVariable Long id, @Valid @RequestBody Tag tag){
-    tag.setId(id);
-    return ApiResponse.success(tagService.updateTag(tag));
+  public ResponseEntity<ApiResponse<TagResponseDTO>> updateTag(@PathVariable Long id, @Valid @RequestBody TagRequestDTO inputTag){
+    return ApiResponse.success(tagService.updateTag(id, inputTag));
   }
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ApiResponse<String>> deleteTag(@PathVariable Long id){
-    tagService.dateleTag(id);
+    tagService.deleteTag(id);
     return ApiResponse.success("Xóa thành công");
   }
 }

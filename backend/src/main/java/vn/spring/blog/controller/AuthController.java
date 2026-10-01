@@ -52,8 +52,6 @@ public class AuthController {
 		Authentication authentication = authenticationManager.authenticate(authToken);
 
 		User user = userService.findUserByEmai(authentication.getName());
-
-		log.info("username: {}, password: {}", dto.getUsername(), dto.getPassword());
 		
 		String actoken = jwtService.createAccessToken(authentication, user);
 		String rfToken = jwtService.createRefreshToken(user);

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import jakarta.persistence.EntityNotFoundException;
+import vn.spring.blog.helper.exception.ForbiddenException;
+import vn.spring.blog.helper.exception.InternalServerException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 
@@ -24,7 +26,7 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(EntityNotFoundException.class)
   public ResponseEntity<?> handleNotFound(EntityNotFoundException ex){
-    return ApiResponse.error(HttpStatus.BAD_REQUEST, ex.getMessage());
+    return ApiResponse.error(HttpStatus.NOT_FOUND, ex.getMessage());
   }
 
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
@@ -47,9 +49,24 @@ public class GlobalExceptionHandler {
     return ApiResponse.error(HttpStatus.BAD_REQUEST, error);
   }
 
-  @ExceptionHandler({ResourceAlreadyExitsException.class, ResourceNotFoundException.class })
-  public ResponseEntity<?> resourseException(Exception ex){
-    return ApiResponse.error(HttpStatus.BAD_REQUEST, ex.getMessage());
+  @ExceptionHandler(ResourceAlreadyExitsException.class)
+  public ResponseEntity<?> resourseAlreadyExistsException(Exception ex){
+    return ApiResponse.error(HttpStatus.CONFLICT, ex.getMessage());
+  }
+
+  @ExceptionHandler(ResourceNotFoundException.class )
+  public ResponseEntity<?> resourseNotFoundException(Exception ex){
+    return ApiResponse.error(HttpStatus.NOT_FOUND, ex.getMessage());
+  }
+
+  @ExceptionHandler(ForbiddenException.class)
+  public ResponseEntity<?> forbiddenException(Exception ex){
+    return ApiResponse.error(HttpStatus.FORBIDDEN, ex.getMessage());
+  }
+
+  @ExceptionHandler(InternalServerException.class)
+  public ResponseEntity<?> internalServerException(Exception ex){
+    return ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
   }
   
 }

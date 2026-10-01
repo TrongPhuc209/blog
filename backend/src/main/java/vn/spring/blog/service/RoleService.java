@@ -1,7 +1,5 @@
 package vn.spring.blog.service;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,6 +11,7 @@ import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Role;
 import vn.spring.blog.model.dto.request.RoleFilterRequestDTO;
+import vn.spring.blog.model.dto.request.RoleRequestDTO;
 import vn.spring.blog.model.dto.response.RoleResponseDTO;
 import vn.spring.blog.repository.RoleRepository;
 import vn.spring.blog.service.specification.RoleSpecification;
@@ -27,13 +26,15 @@ public class RoleService {
     return RoleResponseDTO.builder().id(role.getId()).name(role.getName()).build();
   }
 
-  public Role createRole(Role inputRole) {
+  public RoleResponseDTO createRole(RoleRequestDTO inputRole) {
     boolean checkName = roleRepository.existsByName(inputRole.getName());
     if (checkName) {
       throw new ResourceAlreadyExitsException("Role có tên: " + inputRole.getName() + " đã tồn tại!");
     }
-    Role saveRole = roleRepository.save(inputRole);
-    return saveRole;
+    Role saveRole = new Role();
+    saveRole.setName(inputRole.getName());
+    saveRole.setDescription(inputRole.getDescription());
+    return converRoleToDTO(roleRepository.save(saveRole));
   }
 
   public Page<RoleResponseDTO> getAllRole(RoleFilterRequestDTO roleFilter, Pageable pageable) {
@@ -50,10 +51,10 @@ public class RoleService {
     return converRoleToDTO(currentRole);
   }
 
-  public RoleResponseDTO updateRole(Role inputRole) {
-    Role currentRole = roleRepository.findById(inputRole.getId())
-        .orElseThrow(() -> new ResourceNotFoundException("Role có id " + inputRole.getId() + " không tồn tại!"));
-    boolean checkExist = roleRepository.existsByNameAndIdNot(inputRole.getName(), inputRole.getId());
+  public RoleResponseDTO updateRole(Long id, RoleRequestDTO inputRole) {
+    Role currentRole = roleRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Role có id " + id + " không tồn tại!"));
+    boolean checkExist = roleRepository.existsByNameAndIdNot(inputRole.getName(), id);
     if (checkExist) {
       throw new ResourceAlreadyExitsException("Role có tên: " + inputRole.getName() + " đã tồn tại!");
     }

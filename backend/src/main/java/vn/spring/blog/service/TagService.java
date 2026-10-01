@@ -15,6 +15,7 @@ import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
+import vn.spring.blog.model.dto.request.TagRequestDTO;
 import vn.spring.blog.model.dto.response.TagResponseDTO;
 import vn.spring.blog.repository.PostRepository;
 import vn.spring.blog.repository.TagRepository;
@@ -42,17 +43,19 @@ public class TagService {
         .build();
   }
 
-  public Tag createTag(Tag tag) {
-    boolean isCurrentTag = tagRepository.existsByName(tag.getName());
-    if (isCurrentTag == true) {
-      throw new ResourceAlreadyExitsException("Tag có tên: " + tag.getName() + " đã tồn tại");
+  public TagResponseDTO createTag(TagRequestDTO inputTag) {
+    boolean isCurrentTag = tagRepository.existsByName(inputTag.getName());
+    if (isCurrentTag) {
+      throw new ResourceAlreadyExitsException("Tag có tên: " + inputTag.getName() + " đã tồn tại");
     }
-    return tagRepository.save(tag);
+    Tag tag = new Tag();
+    tag.setName(inputTag.getName());
+    return mapTagToDto(tagRepository.save(tag));
   }
 
-  public Tag getTagById(Long id) {
-    return tagRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException("Tag có id = %s không tồn tại" + id));
+  public TagResponseDTO getTagById(Long id) {
+    return mapTagToDto(tagRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException("Tag có id = %s không tồn tại" + id)));
   }
 
   public Page<TagResponseDTO> getAllTag(TagFilterRequestDTO tagFilter, Pageable pageable) {
@@ -62,17 +65,19 @@ public class TagService {
                         .map(tag -> mapTagToDto(tag));
   }
 
-  public Tag updateTag(Tag tag) {
-    Tag currentTag = getTagById(tag.getId());
-    boolean currentCheck = tagRepository.existsByName(tag.getName());
+  public TagResponseDTO updateTag(Long id, TagRequestDTO inputTag) {
+    Tag currentTag = tagRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Tag có id: " + id + " không tồn tại"));
+
+    boolean currentCheck = tagRepository.existsByName(inputTag.getName());
     if (currentCheck) {
-      throw new ResourceAlreadyExitsException("Tag có tên: " + tag.getName() + " đã tồn tại");
+      throw new ResourceAlreadyExitsException("Tag có tên: " + inputTag.getName() + " đã tồn tại");
     }
-    currentTag.setName(tag.getName());
-    return tagRepository.save(currentTag);
+    currentTag.setName(inputTag.getName());
+    return mapTagToDto(tagRepository.save(currentTag));
   }
 
-  public void dateleTag(long id) {
+  public void deleteTag(long id) {
     Tag currentTag = tagRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Id tag không tồn tại"));
 

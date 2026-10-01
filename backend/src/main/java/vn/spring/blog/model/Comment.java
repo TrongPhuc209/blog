@@ -30,7 +30,7 @@ public class Comment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@NotBlank (message = "Content không được để trống")
+	@NotBlank(message = "Content không được để trống")
 	private String content;
 
 	private boolean isApproved;
