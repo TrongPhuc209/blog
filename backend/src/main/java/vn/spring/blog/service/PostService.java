@@ -35,6 +35,7 @@ public class PostService {
   public PostResponseDTO convertPostToDTO(Post post) {
     return PostResponseDTO.builder()
         .id(post.getId())
+        .userId(post.getUser() != null ? post.getUser().getId() : null)
         .title(post.getTitle())
         .content(post.getContent())
         .tag(post.getTags() != null ? post.getTags().stream()

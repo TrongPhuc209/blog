@@ -381,7 +381,9 @@ export function PostDetailPage() {
       <h1>{post.title}</h1>
       <div className="article-byline">
         Cập nhật {formatDate(post.updateAt)}{" "}
-        {currentUser && <Link to={`/posts/${id}/edit`}>Sửa bài viết ↗</Link>}
+        {currentUser && Number(currentUser.id) === Number(post.userId) && (
+          <Link to={`/posts/${id}/edit`}>Sửa bài viết ↗</Link>
+        )}
       </div>
       <div className="tag-row">
         {(post.tag || []).map((tag) => (
@@ -457,15 +459,20 @@ export function PostFormPage() {
       .catch((e) => setError(getErrorMessage(e)));
     if (id)
       getPost(id)
-        .then((r) =>
+        .then((r) => {
+          const post = r.data.data;
+          if (Number(post.userId) !== Number(currentUser.id)) {
+            navigate(`/posts/${id}`, { replace: true });
+            return;
+          }
           setForm({
-            title: r.data.data.title,
-            content: r.data.data.content,
-            tagIds: (r.data.data.tag || []).map((t) => t.id),
-          }),
-        )
+            title: post.title,
+            content: post.content,
+            tagIds: (post.tag || []).map((tag) => tag.id),
+          });
+        })
         .catch((e) => setError(getErrorMessage(e)));
-  }, [id]);
+  }, [id, currentUser.id, navigate]);
   async function submit(e) {
     e.preventDefault();
     setSaving(true);

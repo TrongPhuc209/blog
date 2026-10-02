@@ -17,6 +17,8 @@ import lombok.Setter;
 public class PostResponseDTO {
   private Long id;
 
+  private Integer userId;
+
 	private String title;
 
 	private String content;

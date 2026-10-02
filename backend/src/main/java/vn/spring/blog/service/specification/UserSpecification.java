@@ -36,7 +36,7 @@ public class UserSpecification {
   public static Specification<User> hasAddress(UserFilterRequestDTO userFilter){
     return (root, query, cb) -> {
       if(userFilter.getAddress() == null) return cb.conjunction();
-      return cb.equal(root.get("address"), userFilter.getAddress());
+      return cb.like(root.get("address"), "%" + userFilter.getAddress() + "%");
     };
   }
 

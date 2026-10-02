@@ -694,6 +694,66 @@ button {
 .inline-form input {
   flex: 1;
 }
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(24 28 23 / 48%);
+}
+.edit-modal {
+  width: min(100%, 480px);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;
+  padding: 25px;
+  background: var(--paper);
+  border: 1px solid #eeede7;
+  box-shadow: 0 20px 70px rgb(0 0 0 / 18%);
+}
+.edit-modal-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.edit-modal-heading h2 {
+  margin: 0;
+  font: 500 25px "Playfair Display", serif;
+}
+.modal-close {
+  padding: 3px 9px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 25px;
+}
+.modal-form {
+  display: grid;
+  gap: 15px;
+}
+.modal-form label {
+  display: grid;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.modal-form input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 5px;
+}
 .admin-cards {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -722,11 +782,78 @@ button {
   margin-left: auto;
   color: #829748;
 }
-.filter-multi {
-  flex-wrap: wrap;
+.user-filter {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 17px 14px;
+  margin: 24px 0 28px;
+  padding-bottom: 23px;
+  border-bottom: 1px solid var(--line);
 }
-.filter-multi input {
-  flex: 1 1 35%;
+.user-filter-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+}
+.user-filter-field label {
+  color: #77796f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.15px;
+}
+.user-filter-field input,
+.user-filter-field select {
+  width: 100%;
+  height: 46px;
+  min-width: 0;
+  padding: 0 11px;
+  border: 1px solid #deded5;
+  border-radius: 3px;
+  outline: none;
+  background: var(--paper);
+  color: var(--ink);
+  font: 12px "DM Sans", sans-serif;
+  transition: border-color 0.15s ease;
+}
+.user-filter-field input::placeholder {
+  color: #a1a197;
+}
+.user-filter-field input:hover,
+.user-filter-field select:hover {
+  border-color: #b8bbae;
+}
+.user-filter-field input:focus-visible,
+.user-filter-field select:focus-visible {
+  border-color: #788b51;
+  outline: 2px solid #d7ef6b;
+  outline-offset: 1px;
+}
+.user-filter-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.user-filter-clear {
+  min-height: 44px;
+  padding: 0 4px;
+  border: 0;
+  background: transparent;
+  color: #73756d;
+  font-size: 12px;
+}
+.user-filter-clear:hover {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.user-filter-actions .primary-button {
+  min-width: 132px;
+  min-height: 46px;
+  border-radius: 2px;
+  background: var(--lime);
 }
 .account-card {
   display: grid;
@@ -808,6 +935,9 @@ button {
   .admin-sidebar {
     padding-right: 10px;
   }
+  .user-filter {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .page-heading h1 {
     font-size: 42px;
   }
@@ -880,6 +1010,21 @@ button {
   }
   .filter-form .primary-button {
     width: 100%;
+  }
+  .user-filter {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 15px;
+  }
+  .user-filter-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 5px;
+  }
+  .user-filter-actions .primary-button {
+    width: 100%;
+  }
+  .user-filter-clear {
+    align-self: center;
   }
   .page-heading h1 {
     font-size: 39px;

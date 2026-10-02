@@ -64,6 +64,28 @@ function AdminShell({ children }) {
     </section>
   );
 }
+function EditModal({ title, onClose, children }) {
+  useEffect(() => {
+    function closeOnEscape(event) {
+      if (event.key === "Escape") onClose();
+    }
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [onClose]);
+  return (
+    <div className="modal-backdrop" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}>
+      <section className="edit-modal" role="dialog" aria-modal="true" aria-label={title}>
+        <div className="edit-modal-heading">
+          <h2>{title}</h2>
+          <button type="button" className="modal-close" onClick={onClose} aria-label="Đóng">×</button>
+        </div>
+        {children}
+      </section>
+    </div>
+  );
+}
 function Dashboard() {
   return (
     <>
@@ -158,7 +180,15 @@ function PostsAdmin() {
 function TagsAdmin() {
   const list = useAdminList(tagApi.getTags);
   const [name, setName] = useState("");
+  const [tagSearch, setTagSearch] = useState("");
+  const [activeSearch, setActiveSearch] = useState({});
   const [editing, setEditing] = useState(null);
+  function searchTags(e) {
+    e.preventDefault();
+    const filters = tagSearch.trim() ? { name: tagSearch.trim() } : {};
+    setActiveSearch(filters);
+    list.load(1, filters);
+  }
   async function submit(e) {
     e.preventDefault();
     try {
@@ -166,7 +196,7 @@ function TagsAdmin() {
       else await tagApi.createTag({ name });
       setName("");
       setEditing(null);
-      list.load(1);
+      list.load(1, activeSearch);
     } catch (e) {
       list.setError(getErrorMessage(e));
     }
@@ -183,7 +213,7 @@ function TagsAdmin() {
       )
         return;
       await tagApi.confirmDeleteTag(tag.id);
-      list.load(list.page);
+      list.load(list.page, activeSearch);
     } catch (e) {
       list.setError(getErrorMessage(e));
     }
@@ -191,7 +221,15 @@ function TagsAdmin() {
   return (
     <>
       <PageHeading eyebrow="QUẢN LÝ" title="Chủ đề" />
-      <form className="inline-form" onSubmit={submit}>
+      <form className="filter-form" onSubmit={searchTags}>
+        <input
+          placeholder="Tìm theo tên tag"
+          value={tagSearch}
+          onChange={(e) => setTagSearch(e.target.value)}
+        />
+        <button className="primary-button">Tìm tag ↗</button>
+      </form>
+      {!editing && <form className="inline-form" onSubmit={submit}>
         <input
           required
           placeholder="Tên chủ đề"
@@ -201,18 +239,7 @@ function TagsAdmin() {
         <button className="primary-button">
           {editing ? "Cập nhật" : "Thêm chủ đề"} ↗
         </button>
-        {editing && (
-          <button
-            type="button"
-            onClick={() => {
-              setEditing(null);
-              setName("");
-            }}
-          >
-            Hủy
-          </button>
-        )}
-      </form>
+      </form>}
       <ErrorMessage>{list.error}</ErrorMessage>
       {list.loading ? (
         <Loading />
@@ -242,8 +269,20 @@ function TagsAdmin() {
       <Pagination
         page={list.page}
         totalPages={list.totalPages}
-        onChange={list.load}
+        onChange={(nextPage) => list.load(nextPage, activeSearch)}
       />
+      {editing && (
+        <EditModal title="Chỉnh sửa chủ đề" onClose={() => { setEditing(null); setName(""); }}>
+          <form className="modal-form" onSubmit={submit}>
+            <label>Tên chủ đề<input required autoFocus value={name} onChange={(e) => setName(e.target.value)} /></label>
+            <ErrorMessage>{list.error}</ErrorMessage>
+            <div className="modal-actions">
+              <button type="button" onClick={() => { setEditing(null); setName(""); }}>Hủy</button>
+              <button className="primary-button">Lưu thay đổi</button>
+            </div>
+          </form>
+        </EditModal>
+      )}
     </>
   );
 }
@@ -324,20 +363,43 @@ function UsersAdmin() {
     address: "",
     role: "",
   });
+  const [activeFilters, setActiveFilters] = useState({});
   const list = useAdminList(userApi.getUsers);
+  const [editingUser, setEditingUser] = useState(null);
+  const [userForm, setUserForm] = useState({ name: "", email: "", address: "" });
+  async function saveUser(e) {
+    e.preventDefault();
+    try {
+      await userApi.updateUser(editingUser.id, {
+        id: editingUser.id,
+        ...userForm,
+        role: editingUser.role,
+      });
+      setEditingUser(null);
+      list.load(list.page, activeFilters);
+    } catch (error) {
+      list.setError(getErrorMessage(error));
+    }
+  }
   async function apply(e) {
     e.preventDefault();
     const params = {};
     Object.entries(filter).forEach(([key, value]) => {
       if (value.trim()) params[key] = value.trim();
     });
+    setActiveFilters(params);
     list.load(1, params);
+  }
+  function clearFilters() {
+    setFilter({ name: "", email: "", address: "", role: "" });
+    setActiveFilters({});
+    list.load(1, {});
   }
   async function remove(user) {
     if (!confirm(`Xóa tài khoản ${user.email}?`)) return;
     try {
       await userApi.deleteUser(user.id);
-      list.load(list.page);
+      list.load(list.page, activeFilters);
     } catch (e) {
       list.setError(getErrorMessage(e));
     }
@@ -345,24 +407,55 @@ function UsersAdmin() {
   return (
     <>
       <PageHeading eyebrow="QUẢN LÝ" title="Người dùng" />
-      <form className="filter-form filter-multi" onSubmit={apply}>
-        {Object.keys(filter).map((key) => (
+      <form className="user-filter" onSubmit={apply}>
+        <div className="user-filter-field">
+          <label htmlFor="user-filter-name">TÊN</label>
           <input
-            key={key}
-            placeholder={
-              key === "role"
-                ? "Vai trò"
-                : key === "name"
-                  ? "Tên"
-                  : key === "email"
-                    ? "Email"
-                    : "Địa chỉ"
-            }
-            value={filter[key]}
-            onChange={(e) => setFilter({ ...filter, [key]: e.target.value })}
+            id="user-filter-name"
+            type="text"
+            placeholder="Tìm theo tên..."
+            value={filter.name}
+            onChange={(e) => setFilter({ ...filter, name: e.target.value })}
           />
-        ))}
-        <button className="primary-button">Lọc ↗</button>
+        </div>
+        <div className="user-filter-field">
+          <label htmlFor="user-filter-email">EMAIL</label>
+          <input
+            id="user-filter-email"
+            type="text"
+            placeholder="Tìm theo email..."
+            value={filter.email}
+            onChange={(e) => setFilter({ ...filter, email: e.target.value })}
+          />
+        </div>
+        <div className="user-filter-field">
+          <label htmlFor="user-filter-address">ĐỊA CHỈ</label>
+          <input
+            id="user-filter-address"
+            type="text"
+            placeholder="Tìm theo địa chỉ..."
+            value={filter.address}
+            onChange={(e) => setFilter({ ...filter, address: e.target.value })}
+          />
+        </div>
+        <div className="user-filter-field">
+          <label htmlFor="user-filter-role">VAI TRÒ</label>
+          <select
+            id="user-filter-role"
+            value={filter.role}
+            onChange={(e) => setFilter({ ...filter, role: e.target.value })}
+          >
+            <option value="">Tất cả</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+        </div>
+        <div className="user-filter-actions">
+          <button className="user-filter-clear" type="button" onClick={clearFilters}>
+            Xóa lọc
+          </button>
+          <button className="primary-button" type="submit">Lọc kết quả →</button>
+        </div>
       </form>
       <ErrorMessage>{list.error}</ErrorMessage>
       {list.loading ? (
@@ -379,20 +472,8 @@ function UsersAdmin() {
             <div className="row-actions">
               <button
                 onClick={() => {
-                  const name = prompt("Tên", user.name);
-                  if (name === null) return;
-                  const address = prompt("Địa chỉ", user.address);
-                  if (address === null) return;
-                  userApi
-                    .updateUser(user.id, {
-                      id: user.id,
-                      name,
-                      email: user.email,
-                      address,
-                      role: user.role,
-                    })
-                    .then(() => list.load(list.page))
-                    .catch((e) => list.setError(getErrorMessage(e)));
+                  setEditingUser(user);
+                  setUserForm({ name: user.name || "", email: user.email || "", address: user.address || "" });
                 }}
               >
                 Sửa
@@ -407,8 +488,19 @@ function UsersAdmin() {
       <Pagination
         page={list.page}
         totalPages={list.totalPages}
-        onChange={list.load}
+        onChange={(nextPage) => list.load(nextPage, activeFilters)}
       />
+      {editingUser && (
+        <EditModal title="Chỉnh sửa người dùng" onClose={() => setEditingUser(null)}>
+          <form className="modal-form" onSubmit={saveUser}>
+            <label>Tên<input required autoFocus value={userForm.name} onChange={(e) => setUserForm({ ...userForm, name: e.target.value })} /></label>
+            <label>Email<input type="email" required value={userForm.email} onChange={(e) => setUserForm({ ...userForm, email: e.target.value })} /></label>
+            <label>Địa chỉ<input value={userForm.address} onChange={(e) => setUserForm({ ...userForm, address: e.target.value })} /></label>
+            <ErrorMessage>{list.error}</ErrorMessage>
+            <div className="modal-actions"><button type="button" onClick={() => setEditingUser(null)}>Hủy</button><button className="primary-button">Lưu thay đổi</button></div>
+          </form>
+        </EditModal>
+      )}
     </>
   );
 }
@@ -416,6 +508,8 @@ function RolesAdmin() {
   const list = useAdminList(roleApi.getRoles);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [editingRole, setEditingRole] = useState(null);
+  const [roleForm, setRoleForm] = useState({ name: "", description: "" });
   async function submit(e) {
     e.preventDefault();
     try {
@@ -431,6 +525,16 @@ function RolesAdmin() {
     if (!confirm("Xóa role này?")) return;
     try {
       await roleApi.deleteRole(id);
+      list.load(list.page);
+    } catch (e) {
+      list.setError(getErrorMessage(e));
+    }
+  }
+  async function saveRole(e) {
+    e.preventDefault();
+    try {
+      await roleApi.updateRole(editingRole.id, { id: editingRole.id, ...roleForm });
+      setEditingRole(null);
       list.load(list.page);
     } catch (e) {
       list.setError(getErrorMessage(e));
@@ -464,11 +568,22 @@ function RolesAdmin() {
               <b>{role.name}</b>
               <p>ID {role.id}</p>
             </div>
-            <button className="danger-button" onClick={() => remove(role.id)}>
-              Xóa
-            </button>
+            <div className="row-actions">
+              <button onClick={() => { setEditingRole(role); setRoleForm({ name: role.name || "", description: role.description || "" }); }}>Sửa</button>
+              <button className="danger-button" onClick={() => remove(role.id)}>Xóa</button>
+            </div>
           </div>
         ))
+      )}
+      {editingRole && (
+        <EditModal title="Chỉnh sửa vai trò" onClose={() => setEditingRole(null)}>
+          <form className="modal-form" onSubmit={saveRole}>
+            <label>Tên vai trò<input required autoFocus value={roleForm.name} onChange={(e) => setRoleForm({ ...roleForm, name: e.target.value })} /></label>
+            <label>Mô tả<input required value={roleForm.description} onChange={(e) => setRoleForm({ ...roleForm, description: e.target.value })} /></label>
+            <ErrorMessage>{list.error}</ErrorMessage>
+            <div className="modal-actions"><button type="button" onClick={() => setEditingRole(null)}>Hủy</button><button className="primary-button">Lưu thay đổi</button></div>
+          </form>
+        </EditModal>
       )}
     </>
   );

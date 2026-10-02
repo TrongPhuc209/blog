@@ -7,7 +7,7 @@ Derived from backend Java controllers, DTOs, security config, services, entities
 Spring Boot REST API backed by Spring Data JPA/MySQL. Controllers return ApiResponse<T> (status, message, data, errorCode, timestamp); collection endpoints wrap data in PageResponse<T> (content, one-based page, size, totalElements, totalPage, hasNext, hasPrevious). Pageable defaults to 10 rows, max 100, and one-indexed page input. Parameters are page, size, sort.
 
 - User belongs to one Role; a user has posts, comments, refresh tokens.
-- Post belongs to one author, has many comments, and many tags. PostResponseDTO does not expose author fields.
+- Post belongs to one author, has many comments, and many tags. PostResponseDTO includes userId so the frontend can compare ownership; it does not include the author's display name.
 - Tag has many posts (many-to-many).
 - Comment belongs to a user and a post; isApproved defaults false and public post comments filter to approved rows.
 - RefreshToken belongs to a user.
@@ -41,7 +41,7 @@ Spring Boot REST API backed by Spring Data JPA/MySQL. Controllers return ApiResp
 | GET | /posts | Public | filters title,content,userId,tagName; pageable | PageResponse<PostResponseDTO> | Home/list/search/tag filter |
 | GET | /posts/{id} | Public | path id | PostResponseDTO | Post detail/edit preload |
 | PUT | /posts/{id} | Authenticated; owner only | PostRequestDTO | PostResponseDTO | Edit post |
-| DELETE | /posts/{id} | Authenticated; owner or ADMIN | path id | string | Admin delete; no author field prevents safe ownership UI |
+| DELETE | /posts/{id} | Authenticated; owner or ADMIN | path id | string | Delete post (backend authorization applies) |
 | POST | /posts/{postId}/comments | Authenticated | CommentRequestDTO {content,post:{id}} | CommentResponseDTO | Add comment |
 | GET | /posts/{postId}/comments/isApproved | Public via GET /posts/** whitelist | path + pageable | page of approved comments | Post comments |
 | GET | /comments | ADMIN | filters isApproved,postId,userId; pageable | page of comments | Moderate/filter comments |
@@ -70,10 +70,11 @@ Spring Boot REST API backed by Spring Data JPA/MySQL. Controllers return ApiResp
 ## Backend behavior and limits
 
 - PostFilterRequestDTO declares from and to, but PostService.getAllPost does not add date specifications; only title/content/userId/tagName filters currently work.
-- Post responses omit author, despite entity relation. UI cannot label author or know ownership; backend rejects unauthorized edits/deletes. UI offers edit to signed-in users and displays backend errors for non-owners.
+- Post responses include author userId, but not author name. The frontend uses userId to show edit only to the author and redirects non-owners away from the edit form; backend remains the authorization authority.
 - CommentResponseDTO omits timestamps. Public post comments provide only approved rows.
 - TagService.deleteTag only reports current usage; deletion is a separate confirm endpoint that detaches tag from posts and removes it.
 - Registration password must be 6–50 chars and include lowercase, uppercase, digit, and one of @$!%*?&.
+- TagRequestDTO rejects blank names and names containing a comma; this applies to create and update tag endpoints.
 - Application exceptions generally use ApiResponse with message/data/errorCode. Security 401/403 handlers instead return {status:401|403,error,message}. Generic exception handler maps uncaught exceptions to HTTP 400. Frontend supports both message formats and status fallbacks.
 - Page key is totalPage (singular), not totalPages.
 

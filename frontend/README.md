@@ -78,7 +78,7 @@ POST /auth/login, /auth/register, /auth/refresh-with-cookie, GET /auth/account, 
 
 ### Backend issue cần lưu ý
 
-- PostResponseDTO không có tác giả; UI không thể hiện author hoặc biết quyền sửa trước request. Backend service kiểm tra quyền và trả 403 cho user không phải tác giả.
+- PostResponseDTO có userId để frontend chỉ hiện quyền sửa cho đúng tác giả; không có tên tác giả để hiển thị trên trang bài viết.
 - PostFilterRequestDTO.from/to hiện chưa được dùng bởi PostService.
 - CommentApprovedDTO dùng field Java isApproved; Lombok JavaBean property là approved, frontend gửi { "approved": true/false }.
 - Security cho POST /tags chỉ yêu cầu authenticated, trong khi các thao tác tag khác yêu cầu ADMIN. UI giữ quản lý tags dưới admin.
