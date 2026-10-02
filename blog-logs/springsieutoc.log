@@ -821,3 +821,339 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2026-10-02T10:47:49.347+07:00  INFO 4252 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
 2026-10-02T10:47:49.382+07:00  INFO 4252 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2026-10-02T10:47:49.384+07:00  INFO 4252 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-02T11:50:01.017+07:00  INFO 25812 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 25812 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T11:50:01.019+07:00  INFO 25812 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T11:50:01.057+07:00  INFO 25812 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T11:50:01.058+07:00  INFO 25812 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T11:50:01.991+07:00  INFO 25812 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T11:50:02.083+07:00  INFO 25812 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 81 ms. Found 6 JPA repository interfaces.
+2026-10-02T11:50:02.777+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T11:50:02.795+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T11:50:02.796+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T11:50:02.855+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T11:50:02.855+07:00  INFO 25812 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1796 ms
+2026-10-02T11:50:03.065+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T11:50:03.104+07:00  INFO 25812 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T11:50:03.136+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T11:50:03.385+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T11:50:03.418+07:00  INFO 25812 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T11:50:03.697+07:00  INFO 25812 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41ef4820
+2026-10-02T11:50:03.699+07:00  INFO 25812 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T11:50:03.769+07:00  INFO 25812 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T11:50:04.547+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T11:50:04.631+07:00  INFO 25812 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T11:50:05.218+07:00  INFO 25812 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T11:50:05.910+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T11:50:05.941+07:00  INFO 25812 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T11:50:05.951+07:00  INFO 25812 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.424 seconds (process running for 5.787)
+2026-10-02T11:50:06.257+07:00  INFO 25812 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T11:50:06.261+07:00  WARN 25812 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T11:50:06.262+07:00  WARN 25812 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T11:50:56.294+07:00  INFO 4480 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 4480 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T11:50:56.296+07:00  INFO 4480 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T11:50:56.336+07:00  INFO 4480 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T11:50:56.336+07:00  INFO 4480 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T11:50:57.108+07:00  INFO 4480 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T11:50:57.182+07:00  INFO 4480 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2026-10-02T11:50:57.775+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T11:50:57.793+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T11:50:57.793+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T11:50:57.844+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T11:50:57.844+07:00  INFO 4480 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1507 ms
+2026-10-02T11:50:58.041+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T11:50:58.078+07:00  INFO 4480 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T11:50:58.114+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T11:50:58.362+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T11:50:58.390+07:00  INFO 4480 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T11:50:58.690+07:00  INFO 4480 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4a5cdb0
+2026-10-02T11:50:58.692+07:00  INFO 4480 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T11:50:58.759+07:00  INFO 4480 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T11:50:59.516+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T11:50:59.598+07:00  INFO 4480 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T11:51:00.210+07:00  INFO 4480 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T11:51:00.886+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T11:51:00.922+07:00  INFO 4480 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T11:51:00.934+07:00  INFO 4480 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.064 seconds (process running for 5.447)
+2026-10-02T11:51:01.198+07:00  INFO 4480 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T11:51:01.201+07:00  WARN 4480 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T11:51:01.201+07:00  WARN 4480 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T11:53:01.158+07:00  INFO 24204 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 24204 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T11:53:01.159+07:00  INFO 24204 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T11:53:01.200+07:00  INFO 24204 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T11:53:01.201+07:00  INFO 24204 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T11:53:02.005+07:00  INFO 24204 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T11:53:02.080+07:00  INFO 24204 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 67 ms. Found 6 JPA repository interfaces.
+2026-10-02T11:53:02.746+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T11:53:02.759+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T11:53:02.760+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T11:53:02.810+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T11:53:02.811+07:00  INFO 24204 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1609 ms
+2026-10-02T11:53:03.018+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T11:53:03.060+07:00  INFO 24204 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T11:53:03.089+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T11:53:03.310+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T11:53:03.344+07:00  INFO 24204 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T11:53:03.648+07:00  INFO 24204 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c8b87ba
+2026-10-02T11:53:03.650+07:00  INFO 24204 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T11:53:03.722+07:00  INFO 24204 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T11:53:04.548+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T11:53:04.627+07:00  INFO 24204 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T11:53:05.299+07:00  INFO 24204 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T11:53:05.926+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T11:53:05.967+07:00  INFO 24204 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T11:53:05.983+07:00  INFO 24204 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.308 seconds (process running for 5.639)
+2026-10-02T11:53:06.332+07:00  INFO 24204 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T11:53:06.335+07:00  WARN 24204 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T11:53:06.336+07:00  WARN 24204 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T11:57:47.420+07:00  INFO 24204 --- [springsieutoc] [http-nio-8080-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T11:57:47.420+07:00  INFO 24204 --- [springsieutoc] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T11:57:47.422+07:00  INFO 24204 --- [springsieutoc] [http-nio-8080-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-02T11:57:47.703+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:57:47.710+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:57:48.294+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:57:48.294+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:57:48.552+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#111]]
+2026-10-02T11:57:50.066+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#114]]
+2026-10-02T11:57:51.087+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:57:51.093+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:58:14.884+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:58:14.887+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:58:15.070+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#117]]
+2026-10-02T11:58:42.427+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T11:58:42.428+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [vn.spring.blog.helper.exception.ResourceNotFoundException: Token không tồn tại]
+2026-10-02T12:00:49.237+07:00  WARN 24204 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#118]]
+2026-10-02T14:40:08.075+07:00  INFO 21136 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 21136 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T14:40:08.077+07:00  INFO 21136 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T14:40:08.118+07:00  INFO 21136 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T14:40:08.119+07:00  INFO 21136 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T14:40:09.031+07:00  INFO 21136 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T14:40:09.111+07:00  INFO 21136 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 73 ms. Found 6 JPA repository interfaces.
+2026-10-02T14:40:09.896+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T14:40:09.915+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T14:40:09.915+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T14:40:09.980+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T14:40:09.980+07:00  INFO 21136 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1861 ms
+2026-10-02T14:40:10.239+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T14:40:10.298+07:00  INFO 21136 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T14:40:10.331+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T14:40:10.637+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T14:40:10.668+07:00  INFO 21136 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T14:40:10.986+07:00  INFO 21136 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4adac030
+2026-10-02T14:40:10.988+07:00  INFO 21136 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T14:40:11.060+07:00  INFO 21136 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T14:40:12.085+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T14:40:12.185+07:00  INFO 21136 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T14:40:12.822+07:00  INFO 21136 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T14:40:13.569+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T14:40:13.607+07:00  INFO 21136 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T14:40:13.622+07:00  INFO 21136 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 6.019 seconds (process running for 6.425)
+2026-10-02T14:40:14.032+07:00  INFO 21136 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T14:40:14.037+07:00  WARN 21136 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T14:40:14.038+07:00  WARN 21136 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T14:40:21.006+07:00  INFO 21136 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T14:40:21.006+07:00  INFO 21136 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T14:40:21.008+07:00  INFO 21136 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-02T14:45:19.379+07:00  INFO 27784 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 27784 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T14:45:19.381+07:00  INFO 27784 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T14:45:19.421+07:00  INFO 27784 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T14:45:19.421+07:00  INFO 27784 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T14:45:20.183+07:00  INFO 27784 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T14:45:20.264+07:00  INFO 27784 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 72 ms. Found 6 JPA repository interfaces.
+2026-10-02T14:45:20.901+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T14:45:20.916+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T14:45:20.917+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T14:45:20.969+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T14:45:20.970+07:00  INFO 27784 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1548 ms
+2026-10-02T14:45:21.180+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T14:45:21.231+07:00  INFO 27784 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T14:45:21.257+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T14:45:21.537+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T14:45:21.574+07:00  INFO 27784 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T14:45:21.905+07:00  INFO 27784 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41ef4820
+2026-10-02T14:45:21.907+07:00  INFO 27784 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T14:45:21.973+07:00  INFO 27784 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T14:45:22.730+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T14:45:22.807+07:00  INFO 27784 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T14:45:23.536+07:00  INFO 27784 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T14:45:24.314+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T14:45:24.353+07:00  INFO 27784 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T14:45:24.372+07:00  INFO 27784 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.428 seconds (process running for 5.848)
+2026-10-02T14:45:24.776+07:00  INFO 27784 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T14:45:24.780+07:00  WARN 27784 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T14:45:24.781+07:00  WARN 27784 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T14:45:44.289+07:00  INFO 27784 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T14:45:44.290+07:00  INFO 27784 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T14:45:44.291+07:00  INFO 27784 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-02T14:45:50.569+07:00  INFO 2640 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 2640 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T14:45:50.573+07:00  INFO 2640 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T14:45:50.629+07:00  INFO 2640 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T14:45:50.629+07:00  INFO 2640 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T14:45:51.406+07:00  INFO 2640 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T14:45:51.482+07:00  INFO 2640 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 66 ms. Found 6 JPA repository interfaces.
+2026-10-02T14:45:52.305+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T14:45:52.334+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T14:45:52.336+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T14:45:52.428+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T14:45:52.430+07:00  INFO 2640 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1799 ms
+2026-10-02T14:45:52.654+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T14:45:52.729+07:00  INFO 2640 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T14:45:52.791+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T14:45:53.254+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T14:45:53.293+07:00  INFO 2640 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T14:45:53.726+07:00  INFO 2640 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@62e3541b
+2026-10-02T14:45:53.729+07:00  INFO 2640 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T14:45:53.879+07:00  INFO 2640 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T14:45:55.382+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T14:45:55.544+07:00  INFO 2640 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T14:45:56.535+07:00  INFO 2640 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T14:45:57.629+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T14:45:57.673+07:00  INFO 2640 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T14:45:57.688+07:00  INFO 2640 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 7.695 seconds (process running for 8.101)
+2026-10-02T14:45:57.790+07:00  INFO 2640 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T14:45:57.791+07:00  INFO 2640 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T14:45:57.793+07:00  INFO 2640 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-02T14:45:58.029+07:00  INFO 2640 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T14:45:58.033+07:00  WARN 2640 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T14:45:58.033+07:00  WARN 2640 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T14:46:28.106+07:00  INFO 23160 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 23160 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T14:46:28.108+07:00  INFO 23160 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T14:46:28.142+07:00  INFO 23160 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T14:46:28.143+07:00  INFO 23160 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T14:46:29.052+07:00  INFO 23160 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T14:46:29.124+07:00  INFO 23160 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2026-10-02T14:46:29.754+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T14:46:29.767+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T14:46:29.768+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T14:46:29.810+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T14:46:29.811+07:00  INFO 23160 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1668 ms
+2026-10-02T14:46:30.046+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T14:46:30.085+07:00  INFO 23160 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T14:46:30.111+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T14:46:30.352+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T14:46:30.388+07:00  INFO 23160 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T14:46:30.869+07:00  INFO 23160 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@347f4bd4
+2026-10-02T14:46:30.871+07:00  INFO 23160 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T14:46:30.957+07:00  INFO 23160 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T14:46:31.687+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T14:46:31.774+07:00  INFO 23160 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T14:46:32.431+07:00  INFO 23160 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T14:46:33.356+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T14:46:33.400+07:00  INFO 23160 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T14:46:33.414+07:00  INFO 23160 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.731 seconds (process running for 6.053)
+2026-10-02T14:46:33.827+07:00  INFO 23160 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T14:46:33.833+07:00  WARN 23160 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T14:46:33.833+07:00  WARN 23160 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T14:46:35.944+07:00  INFO 23160 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T14:46:35.945+07:00  INFO 23160 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T14:46:35.947+07:00  INFO 23160 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-02T14:50:01.347+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<?> vn.spring.blog.controller.AuthController.register(vn.spring.blog.model.dto.request.RegisterRequestDTO): [Field error in object 'registerRequestDTO' on field 'password': rejected value [123333]; codes [Pattern.registerRequestDTO.password,Pattern.password,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [registerRequestDTO.password,password]; arguments []; default message [password],[Ljakarta.validation.constraints.Pattern$Flag;@6841c1e3,^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).+$]; default message [Mật khẩu phải có chữ thường, chữ hoa, số và ký tự đặc biệt]] ]
+2026-10-02T14:50:28.353+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-10-02T14:50:53.117+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.security.authentication.BadCredentialsException: Bad credentials]
+2026-10-02T14:55:53.036+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#124]]
+2026-10-02T15:02:14.501+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#125]]
+2026-10-02T15:02:24.080+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#127]]
+2026-10-02T15:03:18.025+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#129]]
+2026-10-02T15:04:03.464+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#131]]
+2026-10-02T15:08:49.082+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#133]]
+2026-10-02T15:09:22.012+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#136]]
+2026-10-02T15:12:25.783+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:12:47.139+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:12:48.464+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:12:50.385+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#139]]
+2026-10-02T15:12:56.854+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:13:39.147+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:13:39.808+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:13:40.067+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:13:40.255+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:13:40.450+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:16:56.070+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:22:23.482+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:22:27.027+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.orm.ObjectOptimisticLockingFailureException: Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect): [vn.spring.blog.model.RefreshToken#140]]
+2026-10-02T15:22:34.660+07:00  WARN 23160 --- [springsieutoc] [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NullPointerException: Cannot invoke "java.util.List.stream()" because the return value of "vn.spring.blog.model.Tag.getPosts()" is null]
+2026-10-02T15:22:40.940+07:00  INFO 28588 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 28588 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-02T15:22:40.945+07:00  INFO 28588 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-02T15:22:41.014+07:00  INFO 28588 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-02T15:22:41.014+07:00  INFO 28588 --- [springsieutoc] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-02T15:22:41.918+07:00  INFO 28588 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-02T15:22:41.990+07:00  INFO 28588 --- [springsieutoc] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 63 ms. Found 6 JPA repository interfaces.
+2026-10-02T15:22:42.718+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-02T15:22:42.733+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-02T15:22:42.734+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-02T15:22:42.786+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-02T15:22:42.786+07:00  INFO 28588 --- [springsieutoc] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1771 ms
+2026-10-02T15:22:42.979+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-02T15:22:43.019+07:00  INFO 28588 --- [springsieutoc] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-02T15:22:43.045+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-02T15:22:43.272+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-02T15:22:43.300+07:00  INFO 28588 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-02T15:22:43.566+07:00  INFO 28588 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@41ef4820
+2026-10-02T15:22:43.567+07:00  INFO 28588 --- [springsieutoc] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-02T15:22:43.654+07:00  INFO 28588 --- [springsieutoc] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0.45
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-02T15:22:44.559+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-02T15:22:44.643+07:00  INFO 28588 --- [springsieutoc] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-02T15:22:45.319+07:00  INFO 28588 --- [springsieutoc] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-02T15:22:46.160+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-02T15:22:46.193+07:00  INFO 28588 --- [springsieutoc] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-02T15:22:46.204+07:00  INFO 28588 --- [springsieutoc] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.85 seconds (process running for 6.218)
+2026-10-02T15:22:46.501+07:00  INFO 28588 --- [springsieutoc] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-02T15:22:46.504+07:00  WARN 28588 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-02T15:22:46.505+07:00  WARN 28588 --- [springsieutoc] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-02T15:22:49.866+07:00  INFO 28588 --- [springsieutoc] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-02T15:22:49.867+07:00  INFO 28588 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-02T15:22:49.869+07:00  INFO 28588 --- [springsieutoc] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

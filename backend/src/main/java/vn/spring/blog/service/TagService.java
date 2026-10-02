@@ -14,7 +14,6 @@ import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
-import vn.spring.blog.model.dto.request.PostFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagRequestDTO;
 import vn.spring.blog.model.dto.response.PostResponseDTO;
@@ -29,13 +28,14 @@ import vn.spring.blog.service.specification.TagSpecification;
 public class TagService {
   private final TagRepository tagRepository;
   private final PostRepository postRepository;
-  private final PostService postService;
 
   private static TagResponseDTO mapTagToDto(Tag tag) {
+    // Tag mới tạo chưa có post; response dùng danh sách rỗng thay vì gọi stream trên null.
+    List<Post> posts = tag.getPosts() == null ? List.of() : tag.getPosts();
     return TagResponseDTO.builder()
         .id(tag.getId())
         .name(tag.getName())
-        .posts(tag.getPosts()
+        .posts(posts
             .stream()
             .map(p -> TagResponseDTO.OutputPost.builder()
                 .id(p.getId())

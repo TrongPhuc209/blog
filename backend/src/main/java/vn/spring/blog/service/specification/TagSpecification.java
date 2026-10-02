@@ -12,7 +12,7 @@ public class TagSpecification {
   public static Specification<Tag> hasName(TagFilterRequestDTO tagFilter){
     return (root, query, cb) -> {
       if(tagFilter.getName() == null) return cb.conjunction();
-      return cb.like(root.get("name"), tagFilter.getName());
+      return cb.like(root.get("name"), "%" + tagFilter.getName() + "%");
     };
   }
 

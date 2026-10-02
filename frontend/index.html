@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#f6f4ef"/><title>Chuyện Blog</title></head><body><div id="root">Đang khởi động giao diện…</div><script>
+  function showStartupError(message) {
+    var box = document.createElement('pre');
+    box.style.cssText = 'margin:32px;padding:24px;white-space:pre-wrap;color:#7d3025;background:#fff0eb;font:14px/1.6 monospace';
+    box.textContent = message;
+    document.getElementById('root').replaceChildren(box);
+  }
+  window.addEventListener('error', function (event) {
+    showStartupError('Lỗi khởi động React: ' + String(event.message || event.error || 'Không tải được module JavaScript'));
+  });
+  window.addEventListener('unhandledrejection', function (event) {
+    showStartupError('Lỗi JavaScript: ' + String(event.reason?.message || event.reason || 'Promise bị từ chối'));
+  });
+</script><script type="module" src="/src/main.jsx"></script></body></html>
