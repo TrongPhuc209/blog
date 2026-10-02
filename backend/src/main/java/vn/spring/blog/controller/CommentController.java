@@ -35,23 +35,33 @@ public class CommentController {
     return ApiResponse.success(PageResponse.from(commentService.getAllComment(comFilter, pageable)));
   }
 
-  @GetMapping("/comments/{id}")
+  @GetMapping("/comments/{id:\\d+}")
   public ResponseEntity<ApiResponse<CommentResponseDTO>> getCommentById(@PathVariable Long id){
     return ApiResponse.success(commentService.getById(id));
   }
 
-  @PutMapping("/comments/{id}")
+  @GetMapping ("/posts/{postId}/comments/isApproved")
+  public ResponseEntity<ApiResponse<PageResponse<CommentResponseDTO>>> getAllCommentByPostId(@PathVariable Long postId, Pageable pageable){
+    return ApiResponse.success(PageResponse.from(commentService.getAllCommentByPostId(postId, pageable)));
+  }
+
+  @GetMapping("/comments/me")
+  public ResponseEntity<ApiResponse<PageResponse<CommentResponseDTO>>> getAllCommentByUserLogin(Pageable pageable){
+    return ApiResponse.success(PageResponse.from(commentService.getAllCommentByUserLogin(pageable)));
+  }
+
+  @PutMapping("/comments/{id:\\d+}")
   public ResponseEntity<ApiResponse<CommentResponseDTO>> updateComment(@PathVariable Long id, @Valid @RequestBody CommentRequestDTO inputComment){
     return ApiResponse.success(commentService.updateComment(inputComment, id));
   }
 
-  @PutMapping ("/comments/{id}/approve")
+  @PutMapping ("/comments/{id:\\d+}/approve")
   public ResponseEntity<ApiResponse<String>> approveComment(@PathVariable Long id, @RequestBody CommentApprovedDTO commentApprovedDTO){
     commentService.changeApprovedComment(id, commentApprovedDTO);
     return ApiResponse.success("Comment approved successfully");
   }
 
-  @DeleteMapping("/comments/{id}")
+  @DeleteMapping("/comments/{id:\\d+}")
   public ResponseEntity<ApiResponse<String>> deleteComment(@PathVariable Long id){
     commentService.deleteComment(id);
     return ApiResponse.success("Delete success"); 

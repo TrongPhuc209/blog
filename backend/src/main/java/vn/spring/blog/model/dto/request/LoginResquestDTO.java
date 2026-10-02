@@ -7,14 +7,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter 
-@Setter 
-@NoArgsConstructor 
-@AllArgsConstructor 
-@Builder 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LoginResquestDTO {
-  @NotBlank (message = "username không được để trống")
+  @NotBlank(message = "username không được để trống")
   private String username;
-  @NotBlank (message = "password không được để trống")
+
+  @NotBlank(message = "password không được để trống")
   private String password;
 }

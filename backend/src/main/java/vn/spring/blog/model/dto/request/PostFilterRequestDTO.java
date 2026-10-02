@@ -17,7 +17,7 @@ import lombok.Setter;
 public class PostFilterRequestDTO {
   private String title;
   private String content;
-  private String userId;
+  private Integer userId;
   private List<String> tagName;
   private Instant from;
   private Instant to;

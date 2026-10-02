@@ -41,7 +41,15 @@ public class PostSpecification {
 
   public static Specification<Post> createAtFromTo(PostFilterRequestDTO postFilter){
     return (root, query, cb) -> {
-      if(postFilter.getFrom() == null || postFilter.getTo() == null) cb.conjunction();
+      if (postFilter.getFrom() == null && postFilter.getTo() == null) {
+        return cb.conjunction();
+      }
+      if (postFilter.getFrom() == null) {
+        return cb.lessThanOrEqualTo(root.get("createdAt"), postFilter.getTo());
+      }
+      if (postFilter.getTo() == null) {
+        return cb.greaterThanOrEqualTo(root.get("createdAt"), postFilter.getFrom());
+      }
       return cb.between(root.get("createdAt"), postFilter.getFrom(), postFilter.getTo());
     };
   }

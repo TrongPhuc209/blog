@@ -1,5 +1,7 @@
 package vn.spring.blog.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -18,17 +20,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import vn.spring.blog.config.JwtService;
 import vn.spring.blog.helper.ApiResponse;
+import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.RefreshToken;
 import vn.spring.blog.model.User;
 import vn.spring.blog.model.dto.request.LoginResquestDTO;
 import vn.spring.blog.model.dto.request.RegisterRequestDTO;
 import vn.spring.blog.model.dto.response.ExchangeTokenResponse;
 import vn.spring.blog.model.dto.response.LoginResponseDTO;
+import vn.spring.blog.repository.UserRepository;
 import vn.spring.blog.service.RefreshTokenService;
 import vn.spring.blog.service.UserService;
 
@@ -40,6 +45,7 @@ public class AuthController {
 	private final JwtService jwtService;	
 	private final AuthenticationManager authenticationManager;
 	private final UserService userService;
+	private final UserRepository userRepository;
 	private final RefreshTokenService refreshTokenService;
 
 	@Value("${jwt.refresh-token-validity}")
@@ -124,6 +130,18 @@ public class AuthController {
 		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).body(finalData);
 	}
 
+	@PostMapping ("/auth/delete-refresh-token")
+	public ResponseEntity<?> deleteRefreshToken(@RequestParam int userId){
+		User currentUser = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User với id: " + userId + " không tồn tại"));
+		List<RefreshToken> listToken = refreshTokenService.findAllByUserId(currentUser.getId());
+		if(listToken.isEmpty()){
+			return ApiResponse.success("Không có refresh token nào để xóa");
+		}
+		for(RefreshToken token : listToken){
+			refreshTokenService.deleteById(token.getId());
+		}
+		return ApiResponse.success("Xóa tất cả refresh token của userId: " + userId + " thành công");
+	}
 
 	@PostMapping("/auth/register")
 	public ResponseEntity<?> register(@Valid @RequestBody RegisterRequestDTO request){

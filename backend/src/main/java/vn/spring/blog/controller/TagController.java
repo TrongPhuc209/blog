@@ -1,5 +1,7 @@
 package vn.spring.blog.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +20,7 @@ import vn.spring.blog.helper.PageResponse;
 import vn.spring.blog.model.Tag;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagRequestDTO;
+import vn.spring.blog.model.dto.response.PostResponseDTO;
 import vn.spring.blog.model.dto.response.TagResponseDTO;
 import vn.spring.blog.service.TagService;
 
@@ -48,8 +51,14 @@ public class TagController {
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<ApiResponse<String>> deleteTag(@PathVariable Long id){
-    tagService.deleteTag(id);
+  public ResponseEntity<ApiResponse<List<PostResponseDTO>>> deleteTag(@PathVariable Long id){
+    
+    return ApiResponse.success(tagService.deleteTag(id), "List post đang sử dụng tag này");
+  }
+
+  @DeleteMapping("/confirm-delete/{id}")
+  public ResponseEntity<ApiResponse<String>> comfirmDeleteTag(@PathVariable Long id){
+    tagService.comfirmDeleteTag(id);
     return ApiResponse.success("Xóa thành công");
   }
 }

@@ -32,7 +32,7 @@ public class PostController {
   }
 
   @GetMapping 
-  public ResponseEntity<ApiResponse<PageResponse<PostResponseDTO>>> getAllPost(PostFilterRequestDTO postFilter,Pageable pageable){
+  public ResponseEntity<ApiResponse<PageResponse<PostResponseDTO>>> getAllPost(PostFilterRequestDTO postFilter, Pageable pageable){
     return ApiResponse.success(PageResponse.from(postService.getAllPost(postFilter, pageable))); 
   }
 

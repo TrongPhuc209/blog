@@ -75,8 +75,8 @@ public class PostService {
     Specification<Post> spec = Specification.allOf(PostSpecification.hasTitle(postFilter),
         PostSpecification.hasContent(postFilter),
         PostSpecification.hasUserId(postFilter),
-        PostSpecification.hasTagName(postFilter),
-        PostSpecification.createAtFromTo(postFilter));
+        PostSpecification.hasTagName(postFilter)
+        );
     return postRepository.findAll(spec, pageable).map(p -> convertPostToDTO(p));
   }
 
@@ -88,7 +88,7 @@ public class PostService {
   public PostResponseDTO updatePost(PostRequestDTO inputPost, Long id) {
     Post currentPost = postRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Post với id: " + id + " không tồn tại"));
-    if (!canModifyPost(currentPost)) {
+    if (!justUserCanModify(currentPost)) {
       throw new ForbiddenException("Bạn không có quyền sửa bài viết này");
     }
 
@@ -102,7 +102,7 @@ public class PostService {
     Post currentPost = postRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Post với id: " + id + " không tồn tại"));
  
-    boolean checkForbidden = canModifyPost(currentPost);
+    boolean checkForbidden = adminAndUserCanModify(currentPost);
     if (checkForbidden) {
       postRepository.deleteById(id);
     } else {
@@ -110,13 +110,24 @@ public class PostService {
     }
   }
 
-  private boolean canModifyPost(Post currentPost) {
+  private boolean adminAndUserCanModify(Post currentPost) {
 
     int userLogin = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
     String roleLogin = SecurityUtil.getCurrentRoleLogin();
     int userInPost = currentPost.getUser().getId();
 
-    if ("ADMIN".equals(roleLogin) || userLogin == userInPost) {
+    if ("ROLE_ADMIN".equals(roleLogin) || userLogin == userInPost) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private boolean justUserCanModify(Post currentPost) {
+    int userLogin = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
+    int userInPost = currentPost.getUser().getId();
+
+    if (userLogin == userInPost) {
       return true;
     } else {
       return false;

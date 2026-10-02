@@ -24,7 +24,7 @@ import vn.spring.blog.service.specification.CommentSpecification;
 
 @Service
 @RequiredArgsConstructor
-@Transactional 
+@Transactional
 public class CommentService {
   private final CommentRepository commentRepository;
   private final UserRepository userRepository;
@@ -62,7 +62,36 @@ public class CommentService {
     return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
   }
 
-  public CommentResponseDTO getById(Long id) {
+  public Page<CommentResponseDTO> getAllCommentByPostId(Long postId, Pageable pageable) {
+    if (!postRepository.existsById(postId)) {
+      throw new ResourceNotFoundException(
+          "Post có id " + postId + " không tồn tại");
+    }
+
+    CommentFilterRequestDTO comFilter = new CommentFilterRequestDTO();
+    comFilter.setIsApproved(true);
+    comFilter.setPostId(postId.toString());
+    Specification<Comment> spec = Specification.allOf(CommentSpecification.hasApproved(comFilter),
+        CommentSpecification.hasPostId(comFilter));
+
+    return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
+  }
+
+  public Page<CommentResponseDTO> getAllCommentByUserLogin(Pageable pageable) {
+    int loginUserId = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
+    if (!userRepository.existsById(loginUserId)) {
+      throw new ResourceNotFoundException(
+          "User có id " + loginUserId + " không tồn tại");
+    } 
+
+    CommentFilterRequestDTO comFilter = new CommentFilterRequestDTO();
+    comFilter.setUserId(String.valueOf(loginUserId));
+    Specification<Comment> spec = Specification.allOf(CommentSpecification.hasUserId(comFilter));
+
+    return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
+  }
+
+  public CommentResponseDTO getById(Long id) {    
     Comment currentComment = commentRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Comment với id: " + id + " không tồn tại"));
     return mapCommentToDto(currentComment);
@@ -83,7 +112,7 @@ public class CommentService {
   public void changeApprovedComment(Long id, CommentApprovedDTO commentApprovedDTO) {
     Comment currentComment = commentRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Comment với id: " + id + " không tồn tại"));
-    if ("ADMIN".equals(SecurityUtil.getCurrentRoleLogin())) {
+    if ("ROLE_ADMIN".equals(SecurityUtil.getCurrentRoleLogin())) {
       currentComment.setApproved(commentApprovedDTO.isApproved());
       commentRepository.save(currentComment);
     } else {
@@ -104,12 +133,12 @@ public class CommentService {
   private boolean canDeleteComment(Comment currentComment) {
     int userLogin = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
     String roleLogin = SecurityUtil.getCurrentRoleLogin();
-    return "ADMIN".equals(roleLogin) || currentComment.getUser().getId() == userLogin;
+    return "ROLE_ADMIN".equals(roleLogin) || currentComment.getUser().getId() == userLogin;
   }
 
   private boolean canEditComment(Comment currentComment) {
     int userLogin = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
     return currentComment.getUser().getId() == userLogin;
   }
-  
+
 }

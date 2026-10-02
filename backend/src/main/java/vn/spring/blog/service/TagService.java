@@ -14,8 +14,10 @@ import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
+import vn.spring.blog.model.dto.request.PostFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagRequestDTO;
+import vn.spring.blog.model.dto.response.PostResponseDTO;
 import vn.spring.blog.model.dto.response.TagResponseDTO;
 import vn.spring.blog.repository.PostRepository;
 import vn.spring.blog.repository.TagRepository;
@@ -27,6 +29,7 @@ import vn.spring.blog.service.specification.TagSpecification;
 public class TagService {
   private final TagRepository tagRepository;
   private final PostRepository postRepository;
+  private final PostService postService;
 
   private static TagResponseDTO mapTagToDto(Tag tag) {
     return TagResponseDTO.builder()
@@ -77,7 +80,20 @@ public class TagService {
     return mapTagToDto(tagRepository.save(currentTag));
   }
 
-  public void deleteTag(long id) {
+  public List<PostResponseDTO> deleteTag(Long id){
+    Tag currentTag = tagRepository.findById(id)
+        .orElseThrow(() -> new ResourceNotFoundException("Id tag không tồn tại"));
+    List<Post> listPost = postRepository.findByTagsContains(currentTag);
+    return listPost.stream()
+        .map(post -> PostResponseDTO.builder()
+            .id(post.getId())
+            .title(post.getTitle())
+            .content(post.getContent())
+            .build())
+        .toList();
+  }
+
+  public void comfirmDeleteTag(long id) {
     Tag currentTag = tagRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Id tag không tồn tại"));
 

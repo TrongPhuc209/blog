@@ -95,22 +95,38 @@ public class SecurityConfig {
                           "/v3/api-docs/**",
                           "/swagger-ui/**",
                           "/swagger-id.html",
+                          
     };
 
-    String[] ADMIN_WHITELIST = {"/users/**",
+    String[] WHITELIST_GET = {"/posts/**",
+                              "/tags/**",
+    };
+
+    String[] ADMIN_ENDPOINTS = {"/users/**",
                                 "/roles/**",
     };
 
-    String[] ADMIN_PUT_WHITELIST = {"/tags/{id}"
+    String[] ADMIN_POST_ENDPOINTS = {"/auth/delete-refresh-token",
     };
 
-    String[] ADMIN_DELETE_WHITELIST = {"/tags/{id}"
+    String[] ADMIN_GET_ENDPOINTS = {"/comments",
+                                    "/comments/{id:\\d+}",
+    };
+
+    String[] ADMIN_PUT_ENDPOINTS = {"/tags/{id:\\d+}",
+    };
+
+    String[] ADMIN_DELETE_ENDPOINTS = {"/tags/{id:\\d+}",
+                                      "/tags/confirm-delete/{id:\\d+}",
     };
 
     http.authorizeHttpRequests((request) -> request.requestMatchers(WHITELIST).permitAll()
-        .requestMatchers(ADMIN_WHITELIST).hasRole("ADMIN")
-        .requestMatchers(HttpMethod.PUT, ADMIN_PUT_WHITELIST).hasRole("ADMIN")
-        .requestMatchers(HttpMethod.DELETE, ADMIN_DELETE_WHITELIST).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.GET, WHITELIST_GET).permitAll()
+        .requestMatchers(ADMIN_ENDPOINTS).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.GET, ADMIN_GET_ENDPOINTS).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.POST, ADMIN_POST_ENDPOINTS).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.PUT, ADMIN_PUT_ENDPOINTS).hasRole("ADMIN")
+        .requestMatchers(HttpMethod.DELETE, ADMIN_DELETE_ENDPOINTS).hasRole("ADMIN")
         .anyRequest().authenticated());
 
     http.csrf(c -> c.disable());
