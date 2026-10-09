@@ -19,6 +19,7 @@ import vn.spring.blog.model.User;
 import vn.spring.blog.model.dto.request.PostFilterRequestDTO;
 import vn.spring.blog.model.dto.request.PostRequestDTO;
 import vn.spring.blog.model.dto.response.PostResponseDTO;
+import vn.spring.blog.model.dto.response.PostResponseDTO.OutputUser;
 import vn.spring.blog.repository.PostRepository;
 import vn.spring.blog.repository.TagRepository;
 import vn.spring.blog.repository.UserRepository;
@@ -33,9 +34,10 @@ public class PostService {
   private final UserRepository userRepository;
 
   public PostResponseDTO convertPostToDTO(Post post) {
+    PostResponseDTO.OutputUser outputUser = new OutputUser(post.getUser().getId(), post.getUser().getName());
     return PostResponseDTO.builder()
         .id(post.getId())
-        .userId(post.getUser() != null ? post.getUser().getId() : null)
+        .user(outputUser)
         .title(post.getTitle())
         .content(post.getContent())
         .tag(post.getTags() != null ? post.getTags().stream()
@@ -72,14 +74,26 @@ public class PostService {
     return convertPostToDTO(p);
   }
 
+  private Specification<Post> buildSpecification(PostFilterRequestDTO postFilter){
+    return Specification.allOf(PostSpecification.hasTitle(postFilter.getTitle()),
+        PostSpecification.hasContent(postFilter.getContent()),
+        PostSpecification.hasUserId(postFilter.getUserId()),
+        PostSpecification.hasTagName(postFilter.getTagName()),
+        PostSpecification.createAtFromTo(postFilter.getFrom(), postFilter.getTo()),
+        PostSpecification.hasUserName(postFilter.getUserName()));
+  }
+
   public Page<PostResponseDTO> getAllPost(PostFilterRequestDTO postFilter, Pageable pageable) {
-    Specification<Post> spec = Specification.allOf(PostSpecification.hasTitle(postFilter),
-        PostSpecification.hasContent(postFilter),
-        PostSpecification.hasUserId(postFilter),
-        PostSpecification.hasTagName(postFilter)
-        );
+    Specification<Post> spec = buildSpecification(postFilter);
     return postRepository.findAll(spec, pageable).map(p -> convertPostToDTO(p));
   }
+
+  public Page<PostResponseDTO> getAllPostByUserName(String userName, Pageable pageable){
+
+    Specification<Post> spec = PostSpecification.hasUserName(userName);
+    return postRepository.findAll(spec, pageable).map(this::convertPostToDTO);
+  }
+
 
   public PostResponseDTO getPostById(Long id) {
     return convertPostToDTO(postRepository.findById(id)

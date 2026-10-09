@@ -17,17 +17,26 @@ import lombok.Setter;
 public class PostResponseDTO {
   private Long id;
 
-  private Integer userId;
-
 	private String title;
 
 	private String content;
+
+  private OutputUser user;
 
   private List<OutputTag> tag;
 
   private Instant createAt;
   
   private Instant updateAt;
+
+  @Getter 
+  @Setter 
+  @NoArgsConstructor 
+  @AllArgsConstructor
+  public static class OutputUser{
+    private Integer id;
+    private String name;
+  }
 
   @Getter 
   @Setter 

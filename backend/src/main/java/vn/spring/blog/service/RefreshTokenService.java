@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.RefreshToken;
-import vn.spring.blog.model.User;
 import vn.spring.blog.repository.RefreshTokenRepository;
 
 @Service

@@ -8,10 +8,10 @@
 		<version>3.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>vn.hoidanit</groupId>
-	<artifactId>springsieutoc</artifactId>
+	<groupId>vn.spring.blog</groupId>
+	<artifactId>blog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>springsieutoc</name>
+	<name>blog</name>
 	<description>Khóa Học Java Spring Siêu Tốc - Tác Giả: Hỏi Dân IT @hoidanit</description>
 	<url>https://hoidanit.vn</url>
 	<licenses>

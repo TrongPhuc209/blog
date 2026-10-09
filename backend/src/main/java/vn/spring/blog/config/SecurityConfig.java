@@ -34,6 +34,7 @@ import com.nimbusds.jose.util.Base64;
 
 import vn.spring.blog.helper.exception.CustomAccessDeniedHandler;
 import vn.spring.blog.helper.exception.CustomAuthenticationEntryPoint;
+import vn.spring.blog.repository.UserRepository;
 import vn.spring.blog.service.UserService;
 
 @Configuration
@@ -48,8 +49,8 @@ public class SecurityConfig {
   }
 
   @Bean
-  UserDetailsService userDetailsService(UserService userService) {
-    return new CustomUserDetailsService(userService);
+  UserDetailsService userDetailsService(UserService userService, UserRepository userRepository) {
+    return new CustomUserDetailsService(userService, userRepository);
   }
 
   @Bean
@@ -102,10 +103,6 @@ public class SecurityConfig {
                           
     };
 
-    String[] WHITELIST_GET = {"/posts/**",
-                              "/tags/**",
-    };
-
     String[] ADMIN_ENDPOINTS = {"/users/**",
                                 "/roles/**",
     };
@@ -113,15 +110,26 @@ public class SecurityConfig {
     String[] ADMIN_POST_ENDPOINTS = {"/auth/delete-refresh-token",
     };
 
-    String[] ADMIN_GET_ENDPOINTS = {"/comments",
-                                    "/comments/{id:\\d+}",
+    String[] ADMIN_GET_ENDPOINTS = {"/comments/{id:\\d+}",
+                                    "/tags/{id:\\d+}",
+                                    "/posts/{id:\\d+}",
+                                    "/roles/{id:\\d+}",
+                                    "/users/{id:\\d+}"
     };
 
     String[] ADMIN_PUT_ENDPOINTS = {"/tags/{id:\\d+}",
+                                    "/tags/{id:\\d+}/approval",
+                                    "/comments/{id:\\d+}/approval",
+                                    "/users/{userId:\\\\d+}/suspension",
     };
 
     String[] ADMIN_DELETE_ENDPOINTS = {"/tags/{id:\\d+}",
                                       "/tags/confirm-delete/{id:\\d+}",
+                                      "/users/{userId:\\\\d+}/suspension",
+    };
+
+    String[] WHITELIST_GET = {"/posts/**",
+                              "/tags/**",
     };
 
     http.authorizeHttpRequests((request) -> request.requestMatchers(WHITELIST).permitAll()

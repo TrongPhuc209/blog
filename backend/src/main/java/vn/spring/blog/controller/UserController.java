@@ -14,20 +14,23 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
-import vn.spring.blog.model.User;
+import vn.spring.blog.model.dto.request.SuspendedAccountRequestDTO;
 import vn.spring.blog.model.dto.request.UserFilterRequestDTO;
 import vn.spring.blog.model.dto.request.UserRequestDTO;
+import vn.spring.blog.model.dto.response.PostResponseDTO;
 import vn.spring.blog.model.dto.response.UserResponseDTO;
+import vn.spring.blog.service.PostService;
 import vn.spring.blog.service.UserService;
 
 @RestController
 @RequiredArgsConstructor 
 public class UserController {
 
-	private final UserService userService;
+	private final PostService postService;
+  private final UserService userService;
 
 	@PostMapping("/users")
-	public ResponseEntity<ApiResponse<UserResponseDTO>> createUser(@Valid @RequestBody User inputUser){
+	public ResponseEntity<ApiResponse<UserResponseDTO>> createUser(@Valid @RequestBody UserRequestDTO inputUser){
 		UserResponseDTO createUser = this.userService.createUser(inputUser);
 		return ApiResponse.created(createUser);
 	}
@@ -43,6 +46,11 @@ public class UserController {
 		return ApiResponse.success(this.userService.findUserById(id));
 	}
 
+	@GetMapping ("/users/{userName}/posts")
+	public ResponseEntity<ApiResponse<PageResponse<PostResponseDTO>>> getAllPostByUserName(@PathVariable  String userName, Pageable pageable){
+		return ApiResponse.success(PageResponse.from(postService.getAllPostByUserName(userName, pageable)));
+	}
+
 	@PutMapping("/users/{id}")
 	public ResponseEntity<ApiResponse<UserResponseDTO>> updateUser(@PathVariable int id, @RequestBody UserRequestDTO inputUser){
 		inputUser.setId(id);
@@ -53,5 +61,17 @@ public class UserController {
 	public ResponseEntity<ApiResponse<String>> deleteUserById(@PathVariable int id){
 		this.userService.deleteUserById(id);
 		return ApiResponse.success(null, "User deleted successfully");
+	}
+
+	@PutMapping("/users/{userId:\\d+}/suspension")
+	public ResponseEntity<?> suspendedAccount(@PathVariable int userId, @RequestBody SuspendedAccountRequestDTO requestDTO){
+		userService.suspendedAccount(userId, requestDTO);
+		return ApiResponse.success("Suspended successful");
+	}	
+
+	@DeleteMapping("/users/{userId:\\d+}/suspension")
+	public ResponseEntity<?> unsuspendedAccount(@PathVariable int userId){
+		userService.unsuspendedAccount(userId);
+		return ApiResponse.success("Unsuspended successful");
 	}
 }

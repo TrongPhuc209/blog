@@ -5,12 +5,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import jakarta.persistence.EntityNotFoundException;
+import vn.spring.blog.helper.exception.BadRequestException;
 import vn.spring.blog.helper.exception.ForbiddenException;
 import vn.spring.blog.helper.exception.InternalServerException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
@@ -68,5 +70,14 @@ public class GlobalExceptionHandler {
   public ResponseEntity<?> internalServerException(Exception ex){
     return ApiResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
   }
-  
+
+  @ExceptionHandler(HttpMessageNotReadableException.class)
+  public ResponseEntity<?> httpMessageNotReadableException(HttpMessageNotReadableException ex){
+    return ApiResponse.error(HttpStatus.BAD_REQUEST, "Vui lòng kiểm tra lại dữ liệu gửi lên");
+  }
+
+  @ExceptionHandler(BadRequestException.class)
+  public ResponseEntity<?> badRequestException(BadRequestException ex){
+    return ApiResponse.error(HttpStatus.BAD_REQUEST, "Vui lòng kiểm tra lại request");
+  }
 }

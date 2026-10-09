@@ -28,6 +28,8 @@ public class Tag {
   @NotBlank(message = "name không được để trống")
   private String name;
 
+  private Boolean isApproved;
+
   @ManyToMany (mappedBy = "tags")
   private List<Post> posts;
 }

@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "jwt.base64-secret",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.base64-secret'"
+  },
+  {
+    "name": "jwt.token-validity",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.token-validity'"
+  },
+  {
+    "name": "blog.log.path",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.log.path'"
+  },
+  {
+    "name": "jwt.refresh-token-validity",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.refresh-token-validity'"
+  },
+  {
+    "name": "jwt.access-token-validity",
+    "type": "java.lang.String",
+    "description": "A description for 'jwt.access-token-validity'"
+  }
+]}

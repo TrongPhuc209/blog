@@ -15,10 +15,14 @@ import lombok.Setter;
 @AllArgsConstructor 
 @Builder 
 public class PostFilterRequestDTO {
+  // lọc theo field thuộc Post
   private String title;
   private String content;
-  private Integer userId;
   private List<String> tagName;
   private Instant from;
   private Instant to;
+  
+  // lọc theo field thuộc User
+  private Integer userId;
+  private String userName;
 }

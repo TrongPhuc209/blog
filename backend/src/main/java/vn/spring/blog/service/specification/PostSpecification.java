@@ -1,5 +1,8 @@
 package vn.spring.blog.service.specification;
 
+import java.time.Instant;
+import java.util.List;
+
 import org.springframework.data.jpa.domain.Specification;
 
 import jakarta.persistence.criteria.Join;
@@ -7,50 +10,59 @@ import jakarta.persistence.criteria.JoinType;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
 import vn.spring.blog.model.User;
-import vn.spring.blog.model.dto.request.PostFilterRequestDTO;
 
 public class PostSpecification {
-  public static Specification<Post> hasTitle(PostFilterRequestDTO postFilter){
+  public static Specification<Post> hasTitle(String title){
     return (root, query, cb) -> {
-      if(postFilter.getTitle() == null) return cb.conjunction();
-      return cb.like(root.get("title"), "%" + postFilter.getTitle() + "%");
-    };
-  }
-  public static Specification<Post> hasContent(PostFilterRequestDTO postFilter){
-    return (root, query, cb) -> {
-      if(postFilter.getContent() == null) return cb.conjunction();
-      return cb.like(root.get("content"), "%" + postFilter.getContent() + "%");
-    };
-  }
-  public static Specification<Post> hasUserId(PostFilterRequestDTO postFilter){
-    return (root, query, cb) -> {
-      if(postFilter.getUserId() == null) return cb.conjunction();
-      Join<Post, User> userJoin = root.join("user", JoinType.INNER);
-      return cb.equal(userJoin.get("id"), postFilter.getUserId());
+      if(title == null) return cb.conjunction();
+      return cb.like(root.get("title"), "%" + title + "%");
     };
   }
 
-  public static Specification<Post> hasTagName(PostFilterRequestDTO postFilter){
+  public static Specification<Post> hasContent(String content){
     return (root, query, cb) -> {
-      if(postFilter.getTagName() == null) return cb.conjunction();
+      if(content == null) return cb.conjunction();
+      return cb.like(root.get("content"), "%" + content + "%");
+    };
+  }
+
+  public static Specification<Post> hasUserId(Integer UserId){
+    return (root, query, cb) -> {
+      if(UserId == null) return cb.conjunction();
+      Join<Post, User> userJoin = root.join("user", JoinType.INNER);
+      return cb.equal(userJoin.get("id"), UserId);
+    };
+  }
+
+  public static Specification<Post> hasUserName(String UserName){
+    return (root, query, cb) -> {
+      if(UserName == null) return cb.conjunction();
+      Join<Post, User> userJoin = root.join("user", JoinType.INNER);
+      return cb.like(userJoin.get("name"), "%" + UserName + "%");
+    };
+  }
+
+  public static Specification<Post> hasTagName(List<String> tagName){
+    return (root, query, cb) -> {
+      if(tagName == null) return cb.conjunction();
       Join<Post, Tag> tagJoin = root.join("tags", JoinType.INNER);
       // return tagJoin.get("name").in(postFilter.getTagName());
-      return cb.in(tagJoin.get("name")).value(postFilter.getTagName());
+      return cb.in(tagJoin.get("name")).value(tagName);
     };
   }
 
-  public static Specification<Post> createAtFromTo(PostFilterRequestDTO postFilter){
+  public static Specification<Post> createAtFromTo(Instant from, Instant to){
     return (root, query, cb) -> {
-      if (postFilter.getFrom() == null && postFilter.getTo() == null) {
+      if (from == null && to == null) {
         return cb.conjunction();
       }
-      if (postFilter.getFrom() == null) {
-        return cb.lessThanOrEqualTo(root.get("createdAt"), postFilter.getTo());
+      if (from == null) {
+        return cb.lessThanOrEqualTo(root.get("createdAt"), to);
       }
-      if (postFilter.getTo() == null) {
-        return cb.greaterThanOrEqualTo(root.get("createdAt"), postFilter.getFrom());
+      if (to == null) {
+        return cb.greaterThanOrEqualTo(root.get("createdAt"), from);
       }
-      return cb.between(root.get("createdAt"), postFilter.getFrom(), postFilter.getTo());
+      return cb.between(root.get("createdAt"), from, to);
     };
   }
 }

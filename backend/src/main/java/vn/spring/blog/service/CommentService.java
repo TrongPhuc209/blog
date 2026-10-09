@@ -1,5 +1,7 @@
 package vn.spring.blog.service;
 
+import java.time.Instant;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -13,7 +15,7 @@ import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Comment;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.User;
-import vn.spring.blog.model.dto.request.CommentApprovedDTO;
+import vn.spring.blog.model.dto.request.ApprovalRequestDTO;
 import vn.spring.blog.model.dto.request.CommentFilterRequestDTO;
 import vn.spring.blog.model.dto.request.CommentRequestDTO;
 import vn.spring.blog.model.dto.response.CommentResponseDTO;
@@ -30,23 +32,38 @@ public class CommentService {
   private final UserRepository userRepository;
   private final PostRepository postRepository;
 
+
   public CommentResponseDTO mapCommentToDto(Comment c) {
     CommentResponseDTO.OutputUser u = new CommentResponseDTO.OutputUser(c.getUser().getId(), c.getUser().getEmail(),
         c.getUser().getName());
     CommentResponseDTO.OutputPost p = new CommentResponseDTO.OutputPost(c.getPost().getId(), c.getPost().getTitle());
-    return CommentResponseDTO.builder().id(c.getId()).content(c.getContent()).isApproved(c.isApproved()).user(u).post(p)
-        .build();
+    return CommentResponseDTO.builder()
+                            .id(c.getId())
+                            .content(c.getContent())
+                            .isApproved(c.isApproved())
+                            .user(u)
+                            .post(p)
+                            .replyCount(c.getReplies().size())
+                            .createAt(c.getCreatedAt())
+                            .updateAt(c.getUpdatedAt())
+                            .editedAt(c.getEditedAt())
+                            .build();
   }
 
   public CommentResponseDTO createComment(Long postId, CommentRequestDTO inputComment) {
+    int loginUserId = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
+
+    User currentUser = userRepository.findById(loginUserId)
+            .orElseThrow(() -> new ResourceNotFoundException("User với id: " + loginUserId + " không tồn tại"));
+
     Post currentPost = postRepository.findById(postId)
         .orElseThrow(() -> new ResourceNotFoundException("Post với id: " + postId + " không tồn tại"));
 
     Comment comment = new Comment();
-
-    int loginUserId = SecurityUtil.getCurrentIdUserLogin().orElseThrow();
-    User currentUser = userRepository.findById(loginUserId)
-        .orElseThrow(() -> new ResourceNotFoundException("User với id: " + loginUserId + " không tồn tại"));
+    if(inputComment.getParentId() != null){
+      Comment parComment = commentRepository.findByIdAndPost_Id(inputComment.getParentId(), postId).orElseThrow(() -> new ResourceNotFoundException("Comment cha không tồn tại"));
+      comment.setParent(parComment);
+    }
 
     comment.setContent(inputComment.getContent());
     comment.setUser(currentUser);
@@ -56,24 +73,16 @@ public class CommentService {
   }
 
   public Page<CommentResponseDTO> getAllComment(CommentFilterRequestDTO comFilter, Pageable pageable) {
-    Specification<Comment> spec = Specification.allOf(CommentSpecification.hasApproved(comFilter),
-        CommentSpecification.hasPostId(comFilter),
-        CommentSpecification.hasUserId(comFilter));
-    return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
-  }
+    Specification<Comment> spec; 
+    String checkRole = SecurityUtil.getCurrentRoleLogin();
 
-  public Page<CommentResponseDTO> getAllCommentByPostId(Long postId, Pageable pageable) {
-    if (!postRepository.existsById(postId)) {
-      throw new ResourceNotFoundException(
-          "Post có id " + postId + " không tồn tại");
-    }
-
-    CommentFilterRequestDTO comFilter = new CommentFilterRequestDTO();
-    comFilter.setIsApproved(true);
-    comFilter.setPostId(postId.toString());
-    Specification<Comment> spec = Specification.allOf(CommentSpecification.hasApproved(comFilter),
-        CommentSpecification.hasPostId(comFilter));
-
+    if(!"ROLE_ADMIN".equals(checkRole)){
+      comFilter.setIsApproved(true);
+    } 
+    
+    spec =  Specification.allOf(CommentSpecification.hasApproved(comFilter),
+                                CommentSpecification.hasPostId(comFilter),
+                                CommentSpecification.hasUserId(comFilter));
     return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
   }
 
@@ -82,7 +91,7 @@ public class CommentService {
     if (!userRepository.existsById(loginUserId)) {
       throw new ResourceNotFoundException(
           "User có id " + loginUserId + " không tồn tại");
-    } 
+    }
 
     CommentFilterRequestDTO comFilter = new CommentFilterRequestDTO();
     comFilter.setUserId(String.valueOf(loginUserId));
@@ -91,7 +100,7 @@ public class CommentService {
     return commentRepository.findAll(spec, pageable).map(com -> mapCommentToDto(com));
   }
 
-  public CommentResponseDTO getById(Long id) {    
+  public CommentResponseDTO getById(Long id) {
     Comment currentComment = commentRepository.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Comment với id: " + id + " không tồn tại"));
     return mapCommentToDto(currentComment);
@@ -105,15 +114,16 @@ public class CommentService {
       throw new ForbiddenException("Bạn không có quyền sửa bình luận này");
     }
     currentComment.setContent(inputComment.getContent());
+    currentComment.setEditedAt(Instant.now());
     commentRepository.save(currentComment);
     return mapCommentToDto(currentComment);
   }
 
-  public void changeApprovedComment(Long id, CommentApprovedDTO commentApprovedDTO) {
-    Comment currentComment = commentRepository.findById(id)
-        .orElseThrow(() -> new ResourceNotFoundException("Comment với id: " + id + " không tồn tại"));
+  public void changeApprovedComment(Long commentId, ApprovalRequestDTO commentApprovedDTO) {
+    Comment currentComment = commentRepository.findById(commentId)
+        .orElseThrow(() -> new ResourceNotFoundException("Comment với id: " + commentId + " không tồn tại"));
     if ("ROLE_ADMIN".equals(SecurityUtil.getCurrentRoleLogin())) {
-      currentComment.setApproved(commentApprovedDTO.isApproved());
+      currentComment.setApproved(commentApprovedDTO.getIsApproved());
       commentRepository.save(currentComment);
     } else {
       throw new ForbiddenException("Bạn không có quyền cấp quyền bình luận này");

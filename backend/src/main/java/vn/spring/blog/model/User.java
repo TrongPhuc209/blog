@@ -1,8 +1,11 @@
 package vn.spring.blog.model;
 
+import java.time.Instant;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,6 +43,22 @@ public class User {
 	@NotBlank(message = "address không được để trống")
 	private String address;
 
+	private int failedLoginAttempts;
+
+	private Instant loginLockedUntil;
+
+	private int loginLockCount;
+
+	@Enumerated (EnumType.STRING)
+	private AccountStatus status;
+
+	@Enumerated (EnumType.STRING)
+	private AccountRestrictionReason restrictionReason;
+
+	private String restrictionNote;
+
+	private Instant suspendedUntil;
+
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
@@ -52,4 +71,16 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<RefreshToken> refreshTokens;
+
+
+	public enum AccountStatus {
+		ACTIVE,
+		SUSPENDED,		
+	}
+
+	public enum AccountRestrictionReason {
+		TOO_MANY_LOGIN_ATTEMPTS,
+		ADMIN_ACTION,
+		OTHER
+	}
 }

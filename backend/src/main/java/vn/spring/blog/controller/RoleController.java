@@ -15,7 +15,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
-import vn.spring.blog.model.Role;
 import vn.spring.blog.model.dto.request.RoleFilterRequestDTO;
 import vn.spring.blog.model.dto.request.RoleRequestDTO;
 import vn.spring.blog.model.dto.response.RoleResponseDTO;

@@ -36,7 +36,7 @@ public class PostController {
     return ApiResponse.success(PageResponse.from(postService.getAllPost(postFilter, pageable))); 
   }
 
-  @GetMapping ("/{id}")
+  @GetMapping ("/{id:\\d+}")
   public ResponseEntity<ApiResponse<PostResponseDTO>> getById(@PathVariable Long id){
     return ApiResponse.success(postService.getPostById(id));
   }

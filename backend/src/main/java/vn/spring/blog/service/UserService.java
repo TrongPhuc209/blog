@@ -1,5 +1,6 @@
 package vn.spring.blog.service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,15 @@ import org.springframework.stereotype.Service;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import vn.spring.blog.helper.SecurityUtil;
+import vn.spring.blog.helper.exception.BadRequestException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
+import vn.spring.blog.helper.exception.UnauthorizedException;
 import vn.spring.blog.model.Role;
 import vn.spring.blog.model.User;
-import vn.spring.blog.model.dto.request.RegisterRequestDTO;
+import vn.spring.blog.model.User.AccountStatus;
+import vn.spring.blog.model.dto.request.SuspendedAccountRequestDTO;
 import vn.spring.blog.model.dto.request.UserFilterRequestDTO;
 import vn.spring.blog.model.dto.request.UserRequestDTO;
 import vn.spring.blog.model.dto.response.RoleResponseDTO;
@@ -45,10 +50,9 @@ public class UserService {
 
 	public Page<UserResponseDTO> fetchUsers(UserFilterRequestDTO userFilter, Pageable pageable) {
 		Specification<User> speci = Specification.allOf(UserSpecification.hasName(userFilter),
-																										UserSpecification.hasEmail(userFilter),
-																										UserSpecification.hasAddress(userFilter),
-																										UserSpecification.hasRole(userFilter)
-																									);
+				UserSpecification.hasEmail(userFilter),
+				UserSpecification.hasAddress(userFilter),
+				UserSpecification.hasRole(userFilter));
 		Page<UserResponseDTO> userList = this.userRepository
 				.findAll(speci, pageable)
 				.map(user -> UserResponseDTO.builder()
@@ -61,21 +65,26 @@ public class UserService {
 		return userList;
 	}
 
-	public UserResponseDTO createUser(User inputUser) {
+	public UserResponseDTO createUser(UserRequestDTO inputUser) {
 		boolean checkExist = userRepository.existsByEmail(inputUser.getEmail());
 		if (checkExist) {
 			throw new ResourceAlreadyExitsException("Email: " + inputUser.getEmail() + " đã tồn tại!");
 		}
-
+		User newUser = new User();
 		Role roleInDB = roleRepository.findByIdOrName(inputUser.getRole().getId(), inputUser.getRole().getName())
 				.orElseThrow(() -> new ResourceNotFoundException("Role không tồn tại!!"));
-		inputUser.setRole(roleInDB);
-
+				
 		String passwordEncode = passwordEncoder.encode(inputUser.getPassword());
-		inputUser.setPassword(passwordEncode);
+		
+		newUser.setEmail(inputUser.getEmail());
+		newUser.setName(inputUser.getName());
+		newUser.setPassword(passwordEncode);		
+		newUser.setRole(roleInDB);
+		newUser.setAddress(inputUser.getAddress());
+		newUser.setStatus(AccountStatus.ACTIVE);
 
-		this.userRepository.save(inputUser);
-		return converUserToDTO(inputUser);
+		this.userRepository.save(newUser);
+		return converUserToDTO(newUser);
 	}
 
 	public UserResponseDTO findUserById(int id) {
@@ -118,23 +127,46 @@ public class UserService {
 		this.userRepository.deleteById(id);
 	}
 
-	public User findUserByEmai(String email){
-		return userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("Email not found from service"));
+
+	public void suspendedAccount(int userId, SuspendedAccountRequestDTO requestDTO){
+    User targetUser = getUserByIdOrElseThrow(userId);
+
+		Instant suspendedUntil = requestDTO.getSuspendedUntil();
+
+    if(suspendedUntil != null && suspendedUntil.isBefore(Instant.now())) {
+      throw new BadRequestException("Thời gian kết thúc phải ở tương lai");
+    }
+    
+    targetUser.setStatus(AccountStatus.SUSPENDED);
+    targetUser.setSuspendedUntil(requestDTO.getSuspendedUntil());
+    targetUser.setRestrictionReason(requestDTO.getReason());
+    targetUser.setRestrictionNote(requestDTO.getReasonDetails());
+
+    userRepository.save(targetUser);
+  }
+
+  public void unsuspendedAccount(int userId){
+    User targetUser = getUserByIdOrElseThrow(userId);
+    targetUser.setStatus(AccountStatus.ACTIVE);
+    targetUser.setSuspendedUntil(null);
+    targetUser.setRestrictionReason(null);
+    targetUser.setRestrictionNote(null);
+
+    userRepository.save(targetUser);
+  }
+
+	public User findUserByEmai(String email) {
+		return userRepository.findByEmail(email)
+				.orElseThrow(() -> new ResourceNotFoundException("Email not found from service"));
 	}
 
-	public void registerUser(RegisterRequestDTO request){
-		boolean checkExist = this.userRepository.existsByEmail(request.getEmail());
-		if(checkExist){
-			throw new ResourceAlreadyExitsException("email " + request.getEmail() + " đã tồn tại");
-		}
-		String hashPassword = this.passwordEncoder.encode(request.getPassword());
-		Role roleUser = this.roleRepository.findByName("USER").orElseThrow(() -> new ResourceNotFoundException("role không tồn tại"));
-		User newUser = new User();
-		newUser.setEmail(request.getEmail());
-		newUser.setName(request.getName());
-		newUser.setPassword(hashPassword);
-		newUser.setAddress(request.getAddress());
-		newUser.setRole(roleUser);
-		userRepository.save(newUser);
+	public User getUserByIdOrElseThrow(int userId){
+		return this.userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User có id " + userId + " không tồn tại"));
 	}
+
+	public User getCurrentUser(){
+		int userId = SecurityUtil.getCurrentIdUserLogin().orElseThrow(() -> new UnauthorizedException("không xác định được người dùng đang đăng nhập"));
+		return getUserByIdOrElseThrow(userId);
+	}
+
 }

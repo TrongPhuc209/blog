@@ -16,28 +16,34 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import vn.spring.blog.helper.SecurityUtil;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
+import vn.spring.blog.helper.exception.UnauthorizedException;
 import vn.spring.blog.model.RefreshToken;
 import vn.spring.blog.model.User;
+import vn.spring.blog.model.User.AccountStatus;
 import vn.spring.blog.model.dto.response.ExchangeTokenResponse;
 import vn.spring.blog.model.dto.response.LoginResponseDTO.UserLogin;
+import vn.spring.blog.repository.UserRepository;
 import vn.spring.blog.service.RefreshTokenService;
 
 @Service 
 @RequiredArgsConstructor 
+@Transactional 
 public class JwtService {
   public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS256;
 
   private final JwtEncoder jwtEncoder;
   private final RefreshTokenService refreshTokenService;
+  private final UserRepository userRepository;
 
   @Value("${jwt.access-token-validity}")
   private String accessTokenExpiration;
 
   @Value("${jwt.refresh-token-validity}")
   private String refreshTokenExpiration;
-
 
   public String createAccessToken(Authentication authentication, User user){
     Instant now = Instant.now();
@@ -65,6 +71,10 @@ public class JwtService {
   }
 
   public String createRefreshToken(User user){
+    if(user.getStatus() != AccountStatus.ACTIVE){
+      throw new UnauthorizedException("Tài khoản đang bị cấm");
+    }
+
     String token = genarateSecureToken();
     Instant now = Instant.now();
     Instant expiration = Instant.now().plusSeconds(Long.valueOf(refreshTokenExpiration));
@@ -80,6 +90,7 @@ public class JwtService {
   }
 
   public ExchangeTokenResponse handleExchangeToken(String refreshToken){
+    // sẽ có trường hợp không tìm thấy refresh token? -> bị admin xóa
     RefreshToken currentToken = this.refreshTokenService.findByToken(refreshToken);
     Instant now = Instant.now();
     if(currentToken.getExpiredAt().isBefore(now)){
@@ -99,6 +110,8 @@ public class JwtService {
                                       .build();
     JwsHeader header = JwsHeader.with(JWT_ALGORITHM).type("JWT").build();
     String newAccessToken = jwtEncoder.encode(JwtEncoderParameters.from(header, claims)).getTokenValue();
+    
+    this.refreshTokenService.deleteById(currentToken.getId());
     String newRefreshToken = createRefreshToken(user);
 
     ExchangeTokenResponse response = new ExchangeTokenResponse();
@@ -111,8 +124,23 @@ public class JwtService {
                               .role(scope)
                               .build());
     
-    this.refreshTokenService.deleteById(currentToken.getId());
-    
     return response;
+  }
+
+  public String createPasswordVerifiedToken(){ 
+    int userId = SecurityUtil.getCurrentIdUserLogin().orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy user đang đăng nhập"));
+    User userLogin = this.userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("User với id: " + userId + " không tồn tại"));
+    Instant now = Instant.now();
+    Instant expired = now.plusSeconds(300); // 5 phút
+    String type = "password_verified";
+    JwtClaimsSet claims = JwtClaimsSet.builder()
+                                      .issuedAt(now)
+                                      .expiresAt(expired)
+                                      .subject(userLogin.getEmail())
+                                      .claim("type", type)
+                                      .claim("id", userLogin.getId())
+                                      .build();
+    JwsHeader header = JwsHeader.with(JWT_ALGORITHM).type("JWT").build();
+    return jwtEncoder.encode(JwtEncoderParameters.from(header, claims)).getTokenValue();
   }
 }

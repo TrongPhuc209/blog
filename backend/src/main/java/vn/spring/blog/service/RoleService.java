@@ -38,8 +38,8 @@ public class RoleService {
   }
 
   public Page<RoleResponseDTO> getAllRole(RoleFilterRequestDTO roleFilter, Pageable pageable) {
-    Specification<Role> spec = Specification.allOf(RoleSpecification.hasName(roleFilter)
-                                                  );
+    Specification<Role> spec = Specification.allOf(RoleSpecification.hasName(roleFilter));
+    
     Page<RoleResponseDTO> listRole = roleRepository.findAll(spec, pageable)
         .map(role -> converRoleToDTO(role));
     return listRole;

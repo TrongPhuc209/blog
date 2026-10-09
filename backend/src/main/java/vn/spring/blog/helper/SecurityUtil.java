@@ -27,6 +27,11 @@ public class SecurityUtil {
     return extractRole(authentication);
   }
 
+  public static String getCurrentTypeLogin(){
+    Authentication authentication = getAuthentication();
+    return extractType(authentication);
+  }
+
   private static String extractUsername(Authentication authentication){
     if(authentication == null){
       return null;
@@ -77,4 +82,20 @@ public class SecurityUtil {
     }
     return null;
   }
+
+  private static String extractType(Authentication authentication){
+    if(authentication == null){
+      return null;
+    }
+    Object principal = authentication.getPrincipal();
+    if(principal instanceof Jwt jwt){
+      String claimType = jwt.getClaimAsString("type");
+      if(claimType == null){
+        return null;
+      }
+      return claimType;
+    }
+    return null;
+  }
+
 }

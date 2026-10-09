@@ -23,4 +23,11 @@ public class TagSpecification {
       return cb.equal(postJoin.get("id"), tagFilter.getPostId());
     };
   }
+
+  public static Specification<Tag> hasApproved(TagFilterRequestDTO tagFilter){
+    return (root, query, cb) -> {
+      if(tagFilter.getIsApproved() == null) return cb.conjunction();
+      return cb.equal(root.get("isApproved"), tagFilter.getIsApproved());
+    };
+  }
 }

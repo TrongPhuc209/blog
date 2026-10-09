@@ -41,7 +41,7 @@ public class Post {
 	private String content;
 
 	private Instant createdAt;
-	
+
 	private Instant updatedAt;
 
 	@ManyToOne

@@ -16,6 +16,7 @@ import lombok.Setter;
 public class TagResponseDTO {
   private Long id;
   private String name;
+  private Boolean isApproved;
   private List<OutputPost> posts;
 
   @Getter 

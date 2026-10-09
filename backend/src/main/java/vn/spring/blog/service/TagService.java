@@ -10,10 +10,13 @@ import org.springframework.stereotype.Service;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import vn.spring.blog.helper.SecurityUtil;
+import vn.spring.blog.helper.exception.ForbiddenException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;
 import vn.spring.blog.model.Tag;
+import vn.spring.blog.model.dto.request.ApprovalRequestDTO;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagRequestDTO;
 import vn.spring.blog.model.dto.response.PostResponseDTO;
@@ -30,11 +33,13 @@ public class TagService {
   private final PostRepository postRepository;
 
   private static TagResponseDTO mapTagToDto(Tag tag) {
-    // Tag mới tạo chưa có post; response dùng danh sách rỗng thay vì gọi stream trên null.
+    // Tag mới tạo chưa có post; response dùng danh sách rỗng thay vì để null.
+    // Vì khi stream gọi tới null sẽ báo lỗi.
     List<Post> posts = tag.getPosts() == null ? List.of() : tag.getPosts();
     return TagResponseDTO.builder()
         .id(tag.getId())
         .name(tag.getName())
+        .isApproved(tag.getIsApproved())
         .posts(posts
             .stream()
             .map(p -> TagResponseDTO.OutputPost.builder()
@@ -53,17 +58,27 @@ public class TagService {
     }
     Tag tag = new Tag();
     tag.setName(inputTag.getName());
+    tag.setIsApproved(false);
     return mapTagToDto(tagRepository.save(tag));
   }
 
+  //admin
   public TagResponseDTO getTagById(Long id) {
     return mapTagToDto(tagRepository.findById(id)
         .orElseThrow(() -> new EntityNotFoundException("Tag có id = %s không tồn tại" + id)));
   }
 
   public Page<TagResponseDTO> getAllTag(TagFilterRequestDTO tagFilter, Pageable pageable) {
-    Specification<Tag> spec = Specification.allOf(TagSpecification.hasName(tagFilter),
-                                                  TagSpecification.hasPost(tagFilter));
+    Specification<Tag> spec;
+
+    if(!"ROLE_ADMIN".equals(SecurityUtil.getCurrentRoleLogin())){
+      tagFilter.setIsApproved(true);
+    }
+    
+    spec = Specification.allOf(TagSpecification.hasName(tagFilter),
+                                TagSpecification.hasPost(tagFilter),
+                                TagSpecification.hasApproved(tagFilter));
+                                                
     return tagRepository.findAll(spec, pageable)
                         .map(tag -> mapTagToDto(tag));
   }
@@ -78,6 +93,14 @@ public class TagService {
     }
     currentTag.setName(inputTag.getName());
     return mapTagToDto(tagRepository.save(currentTag));
+  }
+
+  //admin
+  public void modifyTheApproval(Long tagID, ApprovalRequestDTO tagApprovalDTO){
+    Tag currentTag = tagRepository.findById(tagID).orElseThrow(() -> new ResourceNotFoundException("Tag không tồn tại"));
+
+    currentTag.setIsApproved(tagApprovalDTO.getIsApproved());
+    tagRepository.save(currentTag);
   }
 
   public List<PostResponseDTO> deleteTag(Long id){
@@ -104,4 +127,5 @@ public class TagService {
     }
     tagRepository.deleteById(id);
   }
+
 }

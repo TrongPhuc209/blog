@@ -7,10 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,13 +25,15 @@ import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.RefreshToken;
 import vn.spring.blog.model.User;
+import vn.spring.blog.model.dto.request.EditProfileRequestDTO;
+import vn.spring.blog.model.dto.request.EnterPasswordRequestDTO;
 import vn.spring.blog.model.dto.request.LoginResquestDTO;
 import vn.spring.blog.model.dto.request.RegisterRequestDTO;
 import vn.spring.blog.model.dto.response.ExchangeTokenResponse;
 import vn.spring.blog.model.dto.response.LoginResponseDTO;
 import vn.spring.blog.repository.UserRepository;
+import vn.spring.blog.service.AuthService;
 import vn.spring.blog.service.RefreshTokenService;
-import vn.spring.blog.service.UserService;
 
 @RestController
 @RequiredArgsConstructor 
@@ -43,32 +41,18 @@ import vn.spring.blog.service.UserService;
 public class AuthController {
 
 	private final JwtService jwtService;	
-	private final AuthenticationManager authenticationManager;
-	private final UserService userService;
 	private final UserRepository userRepository;
 	private final RefreshTokenService refreshTokenService;
+	private final AuthService authService;
 
 	@Value("${jwt.refresh-token-validity}")
 	private Long expiredRefreshToken;
 
 	@PostMapping ("auth/login")
 	public ResponseEntity<?> postLogin(@Valid @RequestBody LoginResquestDTO dto) {
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
-		
-		Authentication authentication = authenticationManager.authenticate(authToken);
+		LoginResponseDTO response = authService.login(dto);
 
-		User user = userService.findUserByEmai(authentication.getName());
-		
-		String actoken = jwtService.createAccessToken(authentication, user);
-		String rfToken = jwtService.createRefreshToken(user);
-
-		LoginResponseDTO response = new LoginResponseDTO();
-		response.setAccessToken(actoken);
-		response.setRefreshToken(rfToken);
-		String role = authentication.getAuthorities().stream().findFirst().map(GrantedAuthority::getAuthority).orElse(null);
-		response.setUser(new LoginResponseDTO.UserLogin(user.getId(), authentication.getName(), role));
-
-		ResponseCookie resCookie = ResponseCookie.from("refreshToken", rfToken)
+		ResponseCookie resCookie = ResponseCookie.from("refreshToken", response.getRefreshToken())
 																							.httpOnly(true)
 																							.secure(true)
 																							.path("/")
@@ -145,7 +129,30 @@ public class AuthController {
 
 	@PostMapping("/auth/register")
 	public ResponseEntity<?> register(@Valid @RequestBody RegisterRequestDTO request){
-		this.userService.registerUser(request);
+		this.authService.registerUser(request);
 		return ApiResponse.success("");
 	}
+
+	@PostMapping("/auth/edit-profile")
+	public ResponseEntity<?> editProfile(@Valid @RequestBody EditProfileRequestDTO request){
+		this.authService.editProfile(request);
+		return ApiResponse.success("");
+	}
+
+	@PostMapping ("/auth/verify-password")
+	public ResponseEntity<?> verifyPassword(@Valid @RequestBody EnterPasswordRequestDTO request){
+		boolean isMatch = this.authService.checkPassword(request);
+		if(isMatch){
+			String token = this.jwtService.createPasswordVerifiedToken();
+			return ApiResponse.success(token);
+		} else{
+			return ApiResponse.error(HttpStatus.UNAUTHORIZED, "Mật khẩu không chính xác", null);
+		}
+	}
+
+	@PostMapping("/auth/change-password")
+	public ResponseEntity<?> changePasswordWithToken(@Valid @RequestBody EnterPasswordRequestDTO newPassword){
+		return ApiResponse.success(this.authService.changePasswordWithToken(newPassword));
+	}
+
 }

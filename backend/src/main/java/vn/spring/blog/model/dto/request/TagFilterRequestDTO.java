@@ -14,4 +14,5 @@ import lombok.Setter;
 public class TagFilterRequestDTO {
   private String name;
   private String postId;
+  private Boolean isApproved;
 }

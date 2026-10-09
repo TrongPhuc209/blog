@@ -3,8 +3,8 @@ package vn.spring.blog.model.dto.request;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +22,8 @@ public class CommentRequestDTO {
   @Valid 
   @NotNull (message = "Comment.post không được để trống")
 	private InputPost post;
+
+  private Long parentId;
 
   @Getter 
   @Setter 

@@ -16,5 +16,6 @@ public class UserRequestDTO {
 	private String name;
 	private String email;
 	private String address;
+	private String password;
 	private RoleRequestDTO role;
 }

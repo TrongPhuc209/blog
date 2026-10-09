@@ -1,13 +1,16 @@
 package vn.spring.blog.model;
 
 import java.time.Instant;
+import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -39,6 +42,8 @@ public class Comment {
 
 	private Instant updatedAt;
 
+	private Instant editedAt;
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
@@ -46,11 +51,19 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Post post;
+	
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn (name = "parent_id")
+	private Comment parent;
+
+	@OneToMany(mappedBy = "parent")
+	private List<Comment> replies;
 
 	@PrePersist 
 	public void createComment(){
-		this.createdAt = Instant.now();
-		this.updatedAt = Instant.now();
+		Instant now = Instant.now();
+		this.createdAt = now;
+		this.updatedAt = now;
 	}
 
 	@PreUpdate 

@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
-import vn.spring.blog.model.dto.request.CommentApprovedDTO;
+import vn.spring.blog.model.dto.request.ApprovalRequestDTO;
 import vn.spring.blog.model.dto.request.CommentFilterRequestDTO;
 import vn.spring.blog.model.dto.request.CommentRequestDTO;
 import vn.spring.blog.model.dto.response.CommentResponseDTO;
@@ -40,11 +40,6 @@ public class CommentController {
     return ApiResponse.success(commentService.getById(id));
   }
 
-  @GetMapping ("/posts/{postId}/comments/isApproved")
-  public ResponseEntity<ApiResponse<PageResponse<CommentResponseDTO>>> getAllCommentByPostId(@PathVariable Long postId, Pageable pageable){
-    return ApiResponse.success(PageResponse.from(commentService.getAllCommentByPostId(postId, pageable)));
-  }
-
   @GetMapping("/comments/me")
   public ResponseEntity<ApiResponse<PageResponse<CommentResponseDTO>>> getAllCommentByUserLogin(Pageable pageable){
     return ApiResponse.success(PageResponse.from(commentService.getAllCommentByUserLogin(pageable)));
@@ -55,8 +50,8 @@ public class CommentController {
     return ApiResponse.success(commentService.updateComment(inputComment, id));
   }
 
-  @PutMapping ("/comments/{id:\\d+}/approve")
-  public ResponseEntity<ApiResponse<String>> approveComment(@PathVariable Long id, @RequestBody CommentApprovedDTO commentApprovedDTO){
+  @PutMapping ("/comments/{id:\\d+}/approval")
+  public ResponseEntity<ApiResponse<String>> approveComment(@PathVariable Long id, @RequestBody ApprovalRequestDTO commentApprovedDTO){
     commentService.changeApprovedComment(id, commentApprovedDTO);
     return ApiResponse.success("Comment approved successfully");
   }

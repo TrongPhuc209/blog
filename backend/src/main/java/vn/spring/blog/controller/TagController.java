@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.ApiResponse;
 import vn.spring.blog.helper.PageResponse;
-import vn.spring.blog.model.Tag;
+import vn.spring.blog.model.dto.request.ApprovalRequestDTO;
 import vn.spring.blog.model.dto.request.TagFilterRequestDTO;
 import vn.spring.blog.model.dto.request.TagRequestDTO;
 import vn.spring.blog.model.dto.response.PostResponseDTO;
@@ -49,6 +49,12 @@ public class TagController {
   public ResponseEntity<ApiResponse<TagResponseDTO>> updateTag(@PathVariable Long id, @Valid @RequestBody TagRequestDTO inputTag){
     return ApiResponse.success(tagService.updateTag(id, inputTag));
   }
+
+  @PutMapping("/{id:\\d+}/approval")
+  public ResponseEntity<ApiResponse<String>> changeApproval(@PathVariable Long id, @RequestBody ApprovalRequestDTO requestDTO){
+    tagService.modifyTheApproval(id, requestDTO);
+    return ApiResponse.success("changed successfull");
+  } 
 
   @DeleteMapping("/{id}")
   public ResponseEntity<ApiResponse<List<PostResponseDTO>>> deleteTag(@PathVariable Long id){

@@ -1,10 +1,13 @@
 package vn.spring.blog.model.dto.response;
 
+import java.time.Instant;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Builder.Default;
 
 @Getter 
 @Setter 
@@ -18,6 +21,14 @@ public class CommentResponseDTO {
 	private String content;
 
 	private boolean isApproved;
+
+  private int replyCount;
+
+  private Instant createAt;
+
+  private Instant updateAt;
+  
+  private Instant editedAt;
 
 	private OutputUser user;
 
