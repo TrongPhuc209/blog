@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.ApiResponse;
@@ -32,7 +33,8 @@ public class PostController {
   }
 
   @GetMapping 
-  public ResponseEntity<ApiResponse<PageResponse<PostResponseDTO>>> getAllPost(PostFilterRequestDTO postFilter, Pageable pageable){
+  public ResponseEntity<ApiResponse<PageResponse<PostResponseDTO>>> getAllPost(PostFilterRequestDTO postFilter, Pageable pageable, HttpServletRequest request){
+
     return ApiResponse.success(PageResponse.from(postService.getAllPost(postFilter, pageable))); 
   }
 

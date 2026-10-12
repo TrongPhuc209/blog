@@ -23,5 +23,45 @@
     "name": "jwt.access-token-validity",
     "type": "java.lang.String",
     "description": "A description for 'jwt.access-token-validity'"
+  },
+  {
+    "name": "rate-limit.login.max-requests",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.login.max-requests'"
+  },
+  {
+    "name": "rate-limit.login.window",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.login.window'"
+  },
+  {
+    "name": "rate-limit.login.window",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.login.window'"
+  },
+  {
+    "name": "rate-limit.register.max-requests",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.register.max-requests'"
+  },
+  {
+    "name": "rate-limit.refresh.max-requests",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.refresh.max-requests'"
+  },
+  {
+    "name": "rate-limit.refresh.window",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.refresh.window'"
+  },
+  {
+    "name": "rate-limit.refresh.window",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.refresh.window'"
+  },
+  {
+    "name": "rate-limit.register.window",
+    "type": "java.lang.String",
+    "description": "A description for 'rate-limit.register.window'"
   }
 ]}

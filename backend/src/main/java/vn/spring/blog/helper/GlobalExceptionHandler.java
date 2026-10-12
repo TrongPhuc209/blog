@@ -33,8 +33,13 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(MethodArgumentTypeMismatchException.class)
   public ResponseEntity<?> handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex){
+
+    Class<?> requiredType = ex.getRequiredType();
+
+    String expectedType = requiredType != null ? requiredType.getSimpleName() : "unknow";
+
     String message = String.format("Invalid value '%s' for parameter '%s'. Expected type: %s", 
-                                    ex.getValue(), ex.getName(), ex.getRequiredType().getSimpleName());
+                                    ex.getValue(), ex.getName(), expectedType);
     return ApiResponse.error(HttpStatus.BAD_REQUEST, message);
   }
 

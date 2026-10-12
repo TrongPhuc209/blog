@@ -11,7 +11,6 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.SecurityUtil;
-import vn.spring.blog.helper.exception.ForbiddenException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.Post;

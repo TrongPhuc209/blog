@@ -1,6 +1,19 @@
 services:
 
   # =========================
+  # Redis for rate-limit counters
+  # =========================
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # =========================
   # MySQL
   # =========================
   mysql:
@@ -50,12 +63,17 @@ services:
 
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD}
 
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+
       JWT_BASE64_SECRET: ${JWT_BASE64_SECRET}
 
       BLOG_LOG_PATH: /app/blog-logs
 
     depends_on:
       mysql:
+        condition: service_healthy
+      redis:
         condition: service_healthy
 
     ports:

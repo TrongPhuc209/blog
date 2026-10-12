@@ -6,6 +6,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.oauth2.server.resource.web.authentication.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -88,10 +90,11 @@ public class SecurityConfig {
   @Bean
   SecurityFilterChain securityFilterChain(HttpSecurity http,
       CustomAuthenticationEntryPoint customAuthenticationEntryPoint,
-      CustomAccessDeniedHandler customAccessDeniedHandler) throws Exception {
+      CustomAccessDeniedHandler customAccessDeniedHandler,
+      RateLimitFilter rateLimitFilter) throws Exception {
 
     http.cors(cors -> cors.configurationSource(corsConfigurationSource()));
-    
+
     String[] WHITELIST = {"/auth/login",
                          "/auth/refresh",
                           "/auth/refresh-with-cookie",
@@ -100,7 +103,6 @@ public class SecurityConfig {
                           "/v3/api-docs/**",
                           "/swagger-ui/**",
                           "/swagger-id.html",
-                          
     };
 
     String[] ADMIN_ENDPOINTS = {"/users/**",
@@ -150,7 +152,18 @@ public class SecurityConfig {
         .accessDeniedHandler(customAccessDeniedHandler)
         .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
 
+    // Run once inside Spring Security, before JWT authentication and authorization.
+    http.addFilterBefore(rateLimitFilter, BearerTokenAuthenticationFilter.class);
+
     return http.build();
+  }
+
+  // Prevent Spring Boot from also registering this filter outside the security chain.
+  @Bean
+  FilterRegistrationBean<RateLimitFilter> rateLimitFilterRegistration(RateLimitFilter filter) {
+    FilterRegistrationBean<RateLimitFilter> registration = new FilterRegistrationBean<>(filter);
+    registration.setEnabled(false);
+    return registration;
   }
 
   @Bean

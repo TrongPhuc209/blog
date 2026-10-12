@@ -1,22 +1,33 @@
-2026-10-08T20:56:46.001+07:00  INFO 20068 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 20068 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
-2026-10-08T20:56:46.002+07:00  INFO 20068 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
-2026-10-08T20:56:46.046+07:00  INFO 20068 --- [blog] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2026-10-08T20:56:46.046+07:00  INFO 20068 --- [blog] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2026-10-08T20:56:46.871+07:00  INFO 20068 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2026-10-08T20:56:46.954+07:00  INFO 20068 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 68 ms. Found 6 JPA repository interfaces.
-2026-10-08T20:56:47.712+07:00  INFO 20068 --- [blog] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2026-10-08T20:56:47.725+07:00  INFO 20068 --- [blog] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-10-08T20:56:47.726+07:00  INFO 20068 --- [blog] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
-2026-10-08T20:56:47.777+07:00  INFO 20068 --- [blog] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-10-08T20:56:47.778+07:00  INFO 20068 --- [blog] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1729 ms
-2026-10-08T20:56:47.971+07:00  INFO 20068 --- [blog] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2026-10-08T20:56:48.012+07:00  INFO 20068 --- [blog] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
-2026-10-08T20:56:48.037+07:00  INFO 20068 --- [blog] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2026-10-08T20:56:48.256+07:00  INFO 20068 --- [blog] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2026-10-08T20:56:48.291+07:00  INFO 20068 --- [blog] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2026-10-08T20:56:48.610+07:00  INFO 20068 --- [blog] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5cb2ca7c
-2026-10-08T20:56:48.612+07:00  INFO 20068 --- [blog] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2026-10-08T20:56:48.682+07:00  INFO 20068 --- [blog] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2026-10-12T15:58:03.634+07:00  INFO 14296 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : Starting BlogApplication using Java 25.0.2 with PID 14296 (D:\IT_Project\blog\backend\target\classes started by Admin in D:\IT_Project\blog)
+2026-10-12T15:58:03.642+07:00  INFO 14296 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : The following 1 profile is active: "prod"
+2026-10-12T15:58:03.706+07:00  INFO 14296 --- [blog] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-10-12T15:58:03.708+07:00  INFO 14296 --- [blog] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-10-12T15:58:05.495+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-12T15:58:05.499+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-12T15:58:05.768+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 248 ms. Found 6 JPA repository interfaces.
+2026-10-12T15:58:05.797+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-10-12T15:58:05.799+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-10-12T15:58:05.830+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.832+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.PostRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.833+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.RefreshTokenRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.834+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.834+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.TagRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.835+07:00  INFO 14296 --- [blog] [restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface vn.spring.blog.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-10-12T15:58:05.836+07:00  INFO 14296 --- [blog] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2026-10-12T15:58:06.937+07:00  INFO 14296 --- [blog] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-10-12T15:58:06.961+07:00  INFO 14296 --- [blog] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-12T15:58:06.963+07:00  INFO 14296 --- [blog] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.46]
+2026-10-12T15:58:07.051+07:00  INFO 14296 --- [blog] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-12T15:58:07.053+07:00  INFO 14296 --- [blog] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3342 ms
+2026-10-12T15:58:07.574+07:00  INFO 14296 --- [blog] [restartedMain] o.s.boot.web.servlet.RegistrationBean    : Filter rateLimitFilterRegistration was not registered (disabled)
+2026-10-12T15:58:07.866+07:00  INFO 14296 --- [blog] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-10-12T15:58:07.973+07:00  INFO 14296 --- [blog] [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+2026-10-12T15:58:08.032+07:00  INFO 14296 --- [blog] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-10-12T15:58:08.513+07:00  INFO 14296 --- [blog] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-12T15:58:08.566+07:00  INFO 14296 --- [blog] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-12T15:58:09.070+07:00  INFO 14296 --- [blog] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48e3bd2d
+2026-10-12T15:58:09.071+07:00  INFO 14296 --- [blog] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-12T15:58:09.162+07:00  INFO 14296 --- [blog] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0.45
@@ -24,12 +35,12 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2026-10-08T20:56:49.437+07:00  INFO 20068 --- [blog] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2026-10-08T20:56:49.520+07:00  INFO 20068 --- [blog] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2026-10-08T20:56:50.090+07:00  INFO 20068 --- [blog] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
-2026-10-08T20:56:50.664+07:00  INFO 20068 --- [blog] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2026-10-08T20:56:50.706+07:00  INFO 20068 --- [blog] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2026-10-08T20:56:50.726+07:00  INFO 20068 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 5.175 seconds (process running for 5.529)
-2026-10-08T20:56:50.981+07:00  INFO 20068 --- [blog] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
-2026-10-08T20:56:50.985+07:00  WARN 20068 --- [blog] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
-2026-10-08T20:56:50.986+07:00  WARN 20068 --- [blog] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-10-12T15:58:10.485+07:00  INFO 14296 --- [blog] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-12T15:58:10.679+07:00  INFO 14296 --- [blog] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-12T15:58:11.669+07:00  INFO 14296 --- [blog] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name userDetailsService
+2026-10-12T15:58:12.663+07:00  INFO 14296 --- [blog] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-10-12T15:58:12.717+07:00  INFO 14296 --- [blog] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-10-12T15:58:12.733+07:00  INFO 14296 --- [blog] [restartedMain] vn.spring.blog.BlogApplication           : Started BlogApplication in 9.852 seconds (process running for 10.44)
+2026-10-12T15:58:13.385+07:00  INFO 14296 --- [blog] [restartedMain] vn.spring.blog.service.DataSeeder        : --- SKIP DATA SEEDER ---
+2026-10-12T15:58:13.393+07:00  WARN 14296 --- [blog] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-10-12T15:58:13.396+07:00  WARN 14296 --- [blog] [restartedMain] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'

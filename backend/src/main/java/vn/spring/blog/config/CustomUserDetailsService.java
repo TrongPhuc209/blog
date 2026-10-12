@@ -42,12 +42,13 @@ public class CustomUserDetailsService implements UserDetailsService {
   public boolean checkLogin(User user){
 
     if(AccountStatus.SUSPENDED.equals(user.getStatus())){
+      String restrictionNote = user.getRestrictionNote() != null ? user.getRestrictionNote() : "unknow";
       if(user.getSuspendedUntil() == null){
-        throw new UnauthorizedException("Bạn đã bị cấm do: " + user.getRestrictionNote());
+        throw new UnauthorizedException("Bạn đã bị cấm do: " + restrictionNote);
       }
       
       if(user.getSuspendedUntil().isAfter(Instant.now())){
-        throw new UnauthorizedException("Bạn đang bị cấm do: " + user.getRestrictionNote());
+        throw new UnauthorizedException("Bạn đang bị cấm do: " + restrictionNote);
       }
 
       user.setStatus(AccountStatus.ACTIVE);
