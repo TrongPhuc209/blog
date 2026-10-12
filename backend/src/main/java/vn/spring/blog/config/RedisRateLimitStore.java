@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 @Component
 @RequiredArgsConstructor
 public class RedisRateLimitStore {
+  @SuppressWarnings("rawtypes")
   private static final DefaultRedisScript<List> INCREMENT_AND_SET_TTL = new DefaultRedisScript<>(
       "local count = redis.call('INCR', KEYS[1]) " +
       "if count == 1 then redis.call('PEXPIRE', KEYS[1], ARGV[1]) end " +

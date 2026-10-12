@@ -28,5 +28,5 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 
 	@EntityGraph(attributePaths = "role")
 	@NonNull
-	Page<User> findAll(@Nullable Specification<User> spec, Pageable pageable);
+	Page<User> findAll(@Nullable Specification<User> spec, @NonNull Pageable pageable);
 }
