@@ -63,5 +63,30 @@
     "name": "rate-limit.register.window",
     "type": "java.lang.String",
     "description": "A description for 'rate-limit.register.window'"
+  },
+  {
+    "name": "blog.mysql.host",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.mysql.host'"
+  },
+  {
+    "name": "blog.mysql.port",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.mysql.port'"
+  },
+  {
+    "name": "blog.mysql.username",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.mysql.username'"
+  },
+  {
+    "name": "blog.mysql.password",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.mysql.password'"
+  },
+  {
+    "name": "blog.secret.key",
+    "type": "java.lang.String",
+    "description": "A description for 'blog.secret.key'"
   }
 ]}
