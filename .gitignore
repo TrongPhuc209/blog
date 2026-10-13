@@ -3,3 +3,5 @@ dist/
 .env
 npm-debug.log*
 .vite/
+
+application-dev.properties
