@@ -5,3 +5,4 @@ npm-debug.log*
 .vite/
 
 application-dev.properties
+backend/target

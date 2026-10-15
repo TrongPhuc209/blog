@@ -13,7 +13,7 @@ import lombok.Setter;
 public class LoginResponseDTO {
   private String accessToken;
   private String refreshToken;
-  private String tokenType = "Bearer";
+  private String tokenType;
   private UserLogin user;
 
   @Getter 

@@ -27,50 +27,47 @@ public class RateLimitFilter extends OncePerRequestFilter {
   private final RateLimitProperties properties;
 
   private static final Map<String, String> POST_POLICIES = Map.of(
-      "/auth/login", "login",
-      "/auth/register", "register",
-      "/auth/refresh", "refresh",
-      "/auth/refresh-with-cookie", "refresh");
+    "/auth/login", "login",
+    "/auth/register", "register",
+    "/auth/refresh-with-cookie", "refresh",
+    "/auth/refresh", "refresh"
+  );
 
   @Override
-  protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
-      @NonNull FilterChain filterChain) throws ServletException, IOException {
-    String policyName = HttpMethod.POST.matches(request.getMethod())
-        ? POST_POLICIES.get(request.getRequestURI()) : null;
-
-    // Unconfigured routes and CORS preflight requests pass without consuming a quota.
-    if (policyName == null) {
+  protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
+      throws ServletException, IOException {
+    @SuppressWarnings("null")
+    String policyName = HttpMethod.POST.matches(request.getMethod()) ? POST_POLICIES.get(request.getRequestURI()) : null;
+    if(policyName == null || policyName.isBlank()){
       filterChain.doFilter(request, response);
       return;
     }
-
+    
     RateLimitProperties.Limit limit = properties.forPolicy(policyName);
-    // The bundled Nginx proxy overwrites X-Real-IP with the connecting client address.
-    // The backend must only trust this header when requests come through that proxy.
     String clientIp = request.getHeader("X-Real-IP");
-    if (clientIp == null || clientIp.isBlank()) {
+    if(clientIp == null || clientIp.isBlank()){
       clientIp = request.getRemoteAddr();
     }
-    String key = policyName + ":" + clientIp.trim();
-    Duration retryAfter;
-    try {
-      retryAfter = rateLimitStore.tryAcquire(key, limit.getMaxRequests(), limit.getWindow());
-    } catch (RedisConnectionFailureException exception) {
-      // Fail closed for protected auth endpoints, but report infrastructure failure accurately.
-      response.setStatus(HttpStatus.SERVICE_UNAVAILABLE.value());
-      response.setHeader(HttpHeaders.RETRY_AFTER, "5");
-      response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-      response.getWriter().write("{\"status\":503,\"message\":\"Rate limit service is temporarily unavailable.\"}");
-      return;
-    }
-    if (retryAfter != null) {
-      response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
-      response.setHeader(HttpHeaders.RETRY_AFTER, Long.toString(Math.max(1, retryAfter.toSeconds())));
-      response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-      response.getWriter().write("{\"status\":429,\"message\":\"Too many requests. Please retry later.\"}");
-      return;
-    }
 
+    String key = request.getRequestURI() + ":" + clientIp.trim();
+    Duration retryAfter;
+    try{
+      retryAfter = rateLimitStore.tryAcquire(key, limit.getMaxRequests(), limit.getWindow());
+    } catch(RedisConnectionFailureException exception) {
+        response.setStatus(HttpStatus.SERVICE_UNAVAILABLE.value());
+        response.setHeader(HttpHeaders.RETRY_AFTER, "5");
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.getWriter().write("{\"status\":503,\"message\":\"Rate limit service is temporarily unavailable.\"}");
+        return;
+    }
+    
+    if(retryAfter != null){
+        response.setStatus(HttpStatus.TOO_MANY_REQUESTS.value());
+        response.setHeader(HttpHeaders.RETRY_AFTER, Long.toString(Math.max(1, retryAfter.toSeconds())));
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.getWriter().write("{\"status\":429,\"message\":\"Too many requests. Please retry later.\"}");
+        return; 
+    }
     filterChain.doFilter(request, response);
   }
 }

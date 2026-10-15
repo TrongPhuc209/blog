@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
-import lombok.RequiredArgsConstructor;
 import vn.spring.blog.helper.SecurityUtil;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.helper.exception.UnauthorizedException;
@@ -30,7 +29,6 @@ import vn.spring.blog.repository.UserRepository;
 import vn.spring.blog.service.RefreshTokenService;
 
 @Service 
-@RequiredArgsConstructor 
 @Transactional 
 public class JwtService {
   public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS256;
@@ -38,6 +36,16 @@ public class JwtService {
   private final JwtEncoder jwtEncoder;
   private final RefreshTokenService refreshTokenService;
   private final UserRepository userRepository;
+
+  public JwtService(
+    JwtEncoder jwtEncoder,
+    RefreshTokenService refreshTokenService,
+    UserRepository userRepository
+) {
+    this.jwtEncoder = jwtEncoder;
+    this.refreshTokenService = refreshTokenService;
+    this.userRepository = userRepository;
+}
 
   @Value("${jwt.access-token-validity}")
   private String accessTokenExpiration;
@@ -126,6 +134,7 @@ public class JwtService {
     
     return response;
   }
+
 
   public String createPasswordVerifiedToken(){ 
     int userId = SecurityUtil.getCurrentIdUserLogin().orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy user đang đăng nhập"));
