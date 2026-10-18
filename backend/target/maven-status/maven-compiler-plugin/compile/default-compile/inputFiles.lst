@@ -10,6 +10,7 @@ D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\CommentContro
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\PostController.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\RoleController.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\TagController.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\uploadImageController.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\controller\UserController.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\helper\ApiResponse.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\helper\exception\BadRequestException.java

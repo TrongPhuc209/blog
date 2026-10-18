@@ -50,6 +50,7 @@ vn\spring\blog\model\dto\request\PostFilterRequestDTO.class
 vn\spring\blog\controller\UserController.class
 vn\spring\blog\model\dto\request\CommentFilterRequestDTO.class
 vn\spring\blog\controller\TagController.class
+vn\spring\blog\controller\uploadImageController.class
 vn\spring\blog\model\dto\response\UserResponseDTO$UserResponseDTOBuilder.class
 vn\spring\blog\model\dto\response\LoginResponseDTO$UserLogin.class
 vn\spring\blog\model\dto\response\TagResponseDTO$OutputPost$OutputPostBuilder.class
