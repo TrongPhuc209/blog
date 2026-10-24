@@ -73,6 +73,12 @@ services:
 
       JWT_BASE64_SECRET: ${JWT_BASE64_SECRET}
 
+      R2_ENDPOINT: ${R2_ENDPOINT:}
+      R2_BUCKET: ${R2_BUCKET:}
+      R2_PUBLIC_BASE_URL: ${R2_PUBLIC_BASE_URL:https://pub-a44c3e8334794d33b672f196b9c41495.r2.dev}
+      R2_ACCESS_KEY_ID: ${R2_ACCESS_KEY_ID:}
+      R2_SECRET_ACCESS_KEY: ${R2_SECRET_ACCESS_KEY:}
+
       BLOG_LOG_PATH: /app/blog-logs
 
     depends_on:
@@ -86,6 +92,7 @@ services:
 
     volumes:
       - backend_logs:/app/blog-logs
+      - backend_uploads:/app/uploads
 
 
   # =========================
@@ -112,3 +119,5 @@ volumes:
   mysql_data:
 
   backend_logs:
+
+  backend_uploads:

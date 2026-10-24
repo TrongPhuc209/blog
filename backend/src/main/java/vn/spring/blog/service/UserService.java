@@ -35,6 +35,7 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final AvatarUrlService avatarUrlService;
 
 	public UserResponseDTO converUserToDTO(User user) {
 		return UserResponseDTO.builder()
@@ -42,6 +43,7 @@ public class UserService {
 				.name(user.getName())
 				.email(user.getEmail())
 				.address(user.getAddress())
+				.avatarUrl(avatarUrlService.getAvatarUrl(user))
 				.role(RoleResponseDTO.builder().id(user.getRole().getId())
 						.name(user.getRole().getName())
 						.build())
@@ -60,6 +62,7 @@ public class UserService {
 						.email(user.getEmail())
 						.name(user.getName())
 						.address(user.getAddress())
+						.avatarUrl(avatarUrlService.getAvatarUrl(user))
 						.role(new RoleResponseDTO(user.getRole().getId(), user.getRole().getName()))
 						.build());
 		return userList;
@@ -101,6 +104,7 @@ public class UserService {
 						.email(user.getEmail())
 						.name(user.getName())
 						.address(user.getAddress())
+						.avatarUrl(avatarUrlService.getAvatarUrl(user))
 						.role(new RoleResponseDTO(user.getRole().getId(), user.getRole().getName()))
 						.build())
 				.collect(Collectors.toList());

@@ -9,6 +9,8 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,11 +20,13 @@ import vn.spring.blog.helper.exception.InternalServerException;
 import vn.spring.blog.helper.exception.ResourceAlreadyExitsException;
 import vn.spring.blog.helper.exception.ResourceNotFoundException;
 
+@Slf4j
 @RestControllerAdvice 
 public class GlobalExceptionHandler {
 
   @ExceptionHandler(Exception.class)
   public ResponseEntity<?> handlerAllException(Exception ex){
+    log.error("Unhandled API exception", ex);
     return ApiResponse.error(HttpStatus.BAD_REQUEST, ex.getMessage());
   }
 

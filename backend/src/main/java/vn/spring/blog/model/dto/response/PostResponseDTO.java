@@ -36,6 +36,7 @@ public class PostResponseDTO {
   public static class OutputUser{
     private Integer id;
     private String name;
+    private String avatarUrl;
   }
 
   @Getter 

@@ -60,7 +60,7 @@ public class Comment {
 	private List<Comment> replies;
 
 	@PrePersist 
-	public void createComment(){
+	public void createComment(){	
 		Instant now = Instant.now();
 		this.createdAt = now;
 		this.updatedAt = now;

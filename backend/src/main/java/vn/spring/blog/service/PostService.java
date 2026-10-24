@@ -32,9 +32,11 @@ public class PostService {
   private final PostRepository postRepository;
   private final TagRepository tagRepository;
   private final UserRepository userRepository;
+  private final AvatarUrlService avatarUrlService;
 
   public PostResponseDTO convertPostToDTO(Post post) {
-    PostResponseDTO.OutputUser outputUser = new OutputUser(post.getUser().getId(), post.getUser().getName());
+    PostResponseDTO.OutputUser outputUser = new OutputUser(post.getUser().getId(), post.getUser().getName(),
+        avatarUrlService.getAvatarUrl(post.getUser()));
     return PostResponseDTO.builder()
         .id(post.getId())
         .user(outputUser)

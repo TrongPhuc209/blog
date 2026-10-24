@@ -1,6 +1,7 @@
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\BlogApplication.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\CustomUserDetailsService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\JwtService.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\R2StorageConfiguration.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\RateLimitFilter.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\RateLimitProperties.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\config\RedisRateLimitStore.java
@@ -26,6 +27,7 @@ D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\helper\PageResponse.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\helper\SecurityUtil.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\Comment.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\request\ApprovalRequestDTO.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\request\ChangeAvatarRequestDTO.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\request\CommentFilterRequestDTO.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\request\CommentRequestDTO.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\request\EditProfileRequestDTO.java
@@ -48,21 +50,25 @@ D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\response\PostR
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\response\RoleResponseDTO.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\response\TagResponseDTO.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\dto\response\UserResponseDTO.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\MediaAsset.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\Post.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\RefreshToken.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\Role.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\Tag.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\model\User.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\CommentRepository.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\MediaAssetRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\PostRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\RefreshTokenRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\RoleRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\TagRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\repository\UserRepository.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\AuthService.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\AvatarUrlService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\CommentService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\DataSeeder.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\PostService.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\R2AvatarStorage.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\RefreshTokenService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\RoleService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\specification\CommentSpecification.java
@@ -71,4 +77,5 @@ D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\specification\Ro
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\specification\TagSpecification.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\specification\UserSpecification.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\TagService.java
+D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\TestService.java
 D:\IT_Project\blog\backend\src\main\java\vn\spring\blog\service\UserService.java

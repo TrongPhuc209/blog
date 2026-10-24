@@ -7,6 +7,7 @@ import * as postApi from "../api/postApi.js";
 import * as commentApi from "../api/commentApi.js";
 import { getErrorMessage } from "../api/axiosClient.js";
 import {
+  Avatar,
   ErrorMessage,
   Loading,
   PageHeading,
@@ -326,7 +327,9 @@ function CommentsAdmin() {
       ) : (
         list.items.map((c) => (
           <div className="admin-row" key={c.id}>
-            <div>
+            <div className="admin-comment-content">
+              <Avatar src={c.user?.avatarUrl} name={c.user?.name || c.user?.email} size={32} />
+              <div>
               <b>
                 {c.user?.name || c.user?.email} · {c.post?.title}
               </b>
@@ -336,6 +339,7 @@ function CommentsAdmin() {
               >
                 {c.approved ? "Đã duyệt" : "Chờ duyệt"}
               </span>
+              </div>
             </div>
             <div className="row-actions">
               <button onClick={() => toggle(c)}>

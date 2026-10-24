@@ -21,6 +21,8 @@ public class UserResponseDTO {
 
 	private String address;
 
+	private String avatarUrl;
+
 	private RoleResponseDTO role;
 
 	// private List<Post> posts;

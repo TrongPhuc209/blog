@@ -13,12 +13,20 @@ export function AuthProvider({ children }) {
     // Backend hiện trả refresh token trong body lẫn HttpOnly cookie; frontend không đọc/lưu refresh token.
     setAccessToken(data.accessToken);
     setCurrentUser(data.user);
+    try { await refreshCurrentUser(); } catch { /* Keep the login response if profile lookup is unavailable. */ }
     return data.user;
   }
 
   async function signOut() {
     try { await logoutRequest(); }
     finally { setAccessToken(null); setCurrentUser(null); }
+  }
+
+  async function refreshCurrentUser() {
+    const response = await getAccount();
+    const account = response.data.data;
+    setCurrentUser((previous) => ({ ...previous, ...account }));
+    return account;
   }
 
   useEffect(() => {
@@ -48,9 +56,9 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     // getAccount là nguồn xác nhận trạng thái account sau khi đã có token.
     if (!currentUser || isLoading) return;
-    getAccount().then((response) => setCurrentUser(response.data.data)).catch(() => {});
+    refreshCurrentUser().catch(() => {});
   }, [isLoading]);
 
-  return <AuthContext.Provider value={{ currentUser, isLoading, signIn, signOut }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ currentUser, isLoading, signIn, signOut, refreshCurrentUser }}>{children}</AuthContext.Provider>;
 }
 export function useAuth() { return useContext(AuthContext); }

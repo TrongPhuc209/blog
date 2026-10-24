@@ -30,6 +30,7 @@ import vn.spring.blog.service.specification.TagSpecification;
 public class TagService {
   private final TagRepository tagRepository;
   private final PostRepository postRepository;
+  private final AvatarUrlService avatarUrlService;
 
   private static TagResponseDTO mapTagToDto(Tag tag) {
     // Tag mới tạo chưa có post; response dùng danh sách rỗng thay vì để null.
@@ -111,6 +112,8 @@ public class TagService {
             .id(post.getId())
             .title(post.getTitle())
             .content(post.getContent())
+            .user(new PostResponseDTO.OutputUser(post.getUser().getId(), post.getUser().getName(),
+                avatarUrlService.getAvatarUrl(post.getUser())))
             .build())
         .toList();
   }

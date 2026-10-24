@@ -1,5 +1,6 @@
 package vn.spring.blog.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +28,7 @@ import vn.spring.blog.helper.exception.ResourceNotFoundException;
 import vn.spring.blog.model.RefreshToken;
 import vn.spring.blog.model.User;
 import vn.spring.blog.model.dto.request.EditProfileRequestDTO;
+import vn.spring.blog.model.dto.request.ChangeAvatarRequestDTO;
 import vn.spring.blog.model.dto.request.EnterPasswordRequestDTO;
 import vn.spring.blog.model.dto.request.LoginResquestDTO;
 import vn.spring.blog.model.dto.request.RegisterRequestDTO;
@@ -33,7 +36,9 @@ import vn.spring.blog.model.dto.response.ExchangeTokenResponse;
 import vn.spring.blog.model.dto.response.LoginResponseDTO;
 import vn.spring.blog.repository.UserRepository;
 import vn.spring.blog.service.AuthService;
+import vn.spring.blog.service.AvatarUrlService;
 import vn.spring.blog.service.RefreshTokenService;
+import vn.spring.blog.service.TestService;
 
 @RestController
 @RequiredArgsConstructor 
@@ -44,12 +49,13 @@ public class AuthController {
 	private final UserRepository userRepository;
 	private final RefreshTokenService refreshTokenService;
 	private final AuthService authService;
+	private final AvatarUrlService avatarUrlService;
 
 	@Value("${jwt.refresh-token-validity}")
 	private Long expiredRefreshToken;
 
 	@PostMapping ("auth/login")
-	public ResponseEntity<?> postLogin(@Valid @RequestBody LoginResquestDTO dto) {
+	public ResponseEntity<?> postLogin(@Valid @RequestBody LoginResquestDTO dto) throws IOException {
 		LoginResponseDTO response = authService.login(dto);
 
 		ResponseCookie resCookie = ResponseCookie.from("refreshToken", response.getRefreshToken())
@@ -90,12 +96,17 @@ public class AuthController {
 
 		String userId = jwt.getClaimAsString("id");
 		String scope = jwt.getClaimAsString("scope");
-		String username = jwt.getSubject();
+		User currentUser = userRepository.findById(Integer.valueOf(userId))
+				.orElseThrow(() -> new ResourceNotFoundException("User với id: " + userId + " không tồn tại"));
+		String username = currentUser.getEmail();
 
 		LoginResponseDTO.UserLogin user = new LoginResponseDTO.UserLogin();
 		user.setId(Integer.valueOf(userId));
 		user.setRole(scope);
 		user.setUsername(username);
+		user.setName(currentUser.getName());
+		user.setAddress(currentUser.getAddress());
+		user.setAvatarUrl(avatarUrlService.getAvatarUrl(currentUser));
 
 		return ApiResponse.success(user);
 	}
@@ -137,6 +148,12 @@ public class AuthController {
 	public ResponseEntity<?> editProfile(@Valid @RequestBody EditProfileRequestDTO request){
 		this.authService.editProfile(request);
 		return ApiResponse.success("");
+	}
+
+	@PostMapping(value = "/auth/change-avatar", consumes = "multipart/form-data")
+	public ResponseEntity<?> changeAvatar(@Valid @ModelAttribute ChangeAvatarRequestDTO request){
+		this.authService.changeAvatar(request);
+		return ApiResponse.success("Cập nhật avatar thành công");
 	}
 
 	@PostMapping ("/auth/verify-password")

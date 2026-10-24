@@ -1,6 +1,7 @@
 vn\spring\blog\helper\exception\CustomAuthenticationEntryPoint.class
 vn\spring\blog\service\specification\CommentSpecification.class
 vn\spring\blog\model\dto\response\TagResponseDTO$OutputPost.class
+vn\spring\blog\config\R2StorageConfiguration.class
 vn\spring\blog\repository\RoleRepository.class
 vn\spring\blog\model\dto\request\RoleRequestDTO.class
 vn\spring\blog\model\dto\request\RoleFilterRequestDTO.class
@@ -12,6 +13,7 @@ vn\spring\blog\helper\exception\UnauthorizedException.class
 vn\spring\blog\model\Comment$CommentBuilder.class
 vn\spring\blog\helper\SecurityUtil.class
 vn\spring\blog\service\RefreshTokenService.class
+vn\spring\blog\service\R2AvatarStorage.class
 vn\spring\blog\model\dto\request\RegisterRequestDTO.class
 vn\spring\blog\service\specification\RoleSpecification.class
 vn\spring\blog\model\dto\response\CommentResponseDTO$CommentResponseDTOBuilder.class
@@ -44,6 +46,7 @@ vn\spring\blog\model\dto\response\ExchangeTokenResponse.class
 vn\spring\blog\helper\ApiResponse.class
 vn\spring\blog\model\dto\request\EnterPasswordRequestDTO.class
 vn\spring\blog\model\dto\request\RoleRequestDTO$RoleRequestDTOBuilder.class
+vn\spring\blog\repository\MediaAssetRepository.class
 vn\spring\blog\model\dto\response\TagResponseDTO$TagResponseDTOBuilder.class
 vn\spring\blog\model\dto\request\LoginResquestDTO.class
 vn\spring\blog\model\dto\request\PostFilterRequestDTO.class
@@ -64,8 +67,10 @@ vn\spring\blog\config\RateLimitProperties.class
 vn\spring\blog\repository\PostRepository.class
 vn\spring\blog\model\dto\request\LoginResquestDTO$LoginResquestDTOBuilder.class
 vn\spring\blog\controller\RoleController.class
+vn\spring\blog\model\MediaAsset.class
 vn\spring\blog\service\specification\TagSpecification.class
 vn\spring\blog\service\AuthService.class
+vn\spring\blog\model\MediaAsset$MediaAssetBuilder.class
 vn\spring\blog\model\dto\request\SuspendedAccountRequestDTO.class
 vn\spring\blog\helper\exception\CustomAccessDeniedHandler.class
 vn\spring\blog\helper\exception\ResourceAlreadyExitsException.class
@@ -74,8 +79,10 @@ vn\spring\blog\helper\GlobalExceptionHandler.class
 vn\spring\blog\model\dto\request\CommentRequestDTO$InputPost.class
 vn\spring\blog\config\JwtService.class
 vn\spring\blog\model\dto\request\PostRequestDTO.class
+vn\spring\blog\model\dto\request\ChangeAvatarRequestDTO.class
 vn\spring\blog\service\PostService.class
 vn\spring\blog\config\SecurityConfig.class
+vn\spring\blog\service\AvatarUrlService.class
 vn\spring\blog\model\Tag.class
 vn\spring\blog\model\dto\request\UserFilterRequestDTO.class
 vn\spring\blog\model\dto\response\PostResponseDTO$OutputTag.class
@@ -100,6 +107,7 @@ vn\spring\blog\model\dto\request\CommentFilterRequestDTO$CommentFilterRequestDTO
 vn\spring\blog\model\dto\request\TagFilterRequestDTO$TagFilterRequestDTOBuilder.class
 vn\spring\blog\config\RateLimitFilter.class
 vn\spring\blog\repository\TagRepository.class
+vn\spring\blog\service\TestService.class
 vn\spring\blog\BlogApplication.class
 vn\spring\blog\model\dto\response\LoginResponseDTO$UserLogin$UserLoginBuilder.class
 vn\spring\blog\service\RoleService.class

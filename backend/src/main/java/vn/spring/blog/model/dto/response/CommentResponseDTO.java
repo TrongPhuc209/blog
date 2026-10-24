@@ -42,6 +42,7 @@ public class CommentResponseDTO {
     private int id;
     private String email;
     private String name;
+    private String avatarUrl;
   }
 
   @Getter 

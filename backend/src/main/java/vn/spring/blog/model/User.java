@@ -13,6 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -72,6 +73,12 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<RefreshToken> refreshTokens;
 
+	@OneToMany (mappedBy = "user")
+	private List<MediaAsset> mediaAssets;
+
+	@OneToOne
+	@JoinColumn(name = "avatar_asset_id")
+	private MediaAsset avatar;
 
 	public enum AccountStatus {
 		ACTIVE,

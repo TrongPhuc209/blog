@@ -31,11 +31,12 @@ public class CommentService {
   private final CommentRepository commentRepository;
   private final UserRepository userRepository;
   private final PostRepository postRepository;
+  private final AvatarUrlService avatarUrlService;
 
 
   public CommentResponseDTO mapCommentToDto(Comment c) {
     CommentResponseDTO.OutputUser u = new CommentResponseDTO.OutputUser(c.getUser().getId(), c.getUser().getEmail(),
-        c.getUser().getName());
+        c.getUser().getName(), avatarUrlService.getAvatarUrl(c.getUser()));
     CommentResponseDTO.OutputPost p = new CommentResponseDTO.OutputPost(c.getPost().getId(), c.getPost().getTitle());
     return CommentResponseDTO.builder()
                             .id(c.getId())

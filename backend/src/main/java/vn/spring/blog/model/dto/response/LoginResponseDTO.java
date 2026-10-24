@@ -24,6 +24,9 @@ public class LoginResponseDTO {
   public static class UserLogin{
     private int id;
     private String username;
+    private String name;
+    private String address;
+    private String avatarUrl;
     private String role;
   }
 }

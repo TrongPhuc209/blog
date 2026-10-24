@@ -26,6 +26,7 @@ import vn.spring.blog.model.User.AccountStatus;
 import vn.spring.blog.model.dto.response.ExchangeTokenResponse;
 import vn.spring.blog.model.dto.response.LoginResponseDTO.UserLogin;
 import vn.spring.blog.repository.UserRepository;
+import vn.spring.blog.service.AvatarUrlService;
 import vn.spring.blog.service.RefreshTokenService;
 
 @Service 
@@ -36,15 +37,18 @@ public class JwtService {
   private final JwtEncoder jwtEncoder;
   private final RefreshTokenService refreshTokenService;
   private final UserRepository userRepository;
+  private final AvatarUrlService avatarUrlService;
 
   public JwtService(
     JwtEncoder jwtEncoder,
     RefreshTokenService refreshTokenService,
-    UserRepository userRepository
+    UserRepository userRepository,
+    AvatarUrlService avatarUrlService
 ) {
     this.jwtEncoder = jwtEncoder;
     this.refreshTokenService = refreshTokenService;
     this.userRepository = userRepository;
+    this.avatarUrlService = avatarUrlService;
 }
 
   @Value("${jwt.access-token-validity}")
@@ -129,7 +133,10 @@ public class JwtService {
     response.setUser(UserLogin.builder()
                               .id(user.getId())
                               .username(user.getEmail())
+                              .name(user.getName())
+                              .address(user.getAddress())
                               .role(scope)
+                              .avatarUrl(avatarUrlService.getAvatarUrl(user))
                               .build());
     
     return response;

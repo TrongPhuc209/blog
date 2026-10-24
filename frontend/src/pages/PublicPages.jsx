@@ -9,13 +9,14 @@ import {
 import { getErrorMessage } from "../api/axiosClient.js";
 import { getPost, getPosts, createPost, updatePost } from "../api/postApi.js";
 import { getTags } from "../api/tagApi.js";
-import { register } from "../api/authApi.js";
+import { changeAvatar, editProfile, getAccount, register } from "../api/authApi.js";
 import { useAuth } from "../context/AuthContext.jsx";
 import {
   ErrorMessage,
   Loading,
   PageHeading,
   Pagination,
+  Avatar,
 } from "../components/Common.jsx";
 
 function formatDate(value) {
@@ -27,6 +28,87 @@ function formatDate(value) {
       })
     : "Ngày chưa rõ";
 }
+function roleLabel(role) {
+  const normalized = typeof role === "object" ? role?.name : role;
+  if (["ROLE_ADMIN", "ADMIN"].includes(String(normalized).toUpperCase())) return "Quản trị viên";
+  if (["ROLE_USER", "USER"].includes(String(normalized).toUpperCase())) return "Người dùng";
+  return normalized || "Chưa xác định";
+}
+
+function AvatarCropDialog({ file, onCancel, onConfirm, saving }) {
+  const viewportSize = 240;
+  const [previewUrl, setPreviewUrl] = useState("");
+  const [imageSize, setImageSize] = useState(null);
+  const [zoom, setZoom] = useState(1);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const drag = React.useRef(null);
+
+  useEffect(() => {
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+    setImageSize(null);
+    setZoom(1);
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  const baseScale = imageSize
+    ? Math.max(viewportSize / imageSize.width, viewportSize / imageSize.height)
+    : 1;
+  const scale = baseScale * zoom;
+  const renderedWidth = imageSize ? imageSize.width * scale : viewportSize;
+  const renderedHeight = imageSize ? imageSize.height * scale : viewportSize;
+
+  function clampOffset(x, y, nextScale = scale) {
+    if (!imageSize) return { x, y };
+    const width = imageSize.width * nextScale;
+    const height = imageSize.height * nextScale;
+    return {
+      x: Math.min(0, Math.max(viewportSize - width, x)),
+      y: Math.min(0, Math.max(viewportSize - height, y)),
+    };
+  }
+
+  function changeZoom(value) {
+    const nextZoom = Number(value);
+    const centerX = viewportSize / 2;
+    const centerY = viewportSize / 2;
+    const ratio = nextZoom / zoom;
+    setZoom(nextZoom);
+    setOffset(clampOffset(centerX - (centerX - offset.x) * ratio, centerY - (centerY - offset.y) * ratio, baseScale * nextZoom));
+  }
+
+  function confirmCrop() {
+    if (!imageSize) return;
+    const cropWidth = Math.min(imageSize.width, Math.round(viewportSize / scale));
+    const cropHeight = Math.min(imageSize.height, Math.round(viewportSize / scale));
+    const cropSize = Math.min(cropWidth, cropHeight);
+    const x = Math.max(0, Math.min(imageSize.width - cropSize, Math.round(-offset.x / scale)));
+    const y = Math.max(0, Math.min(imageSize.height - cropSize, Math.round(-offset.y / scale)));
+    onConfirm({ x, y, width: cropSize, height: cropSize });
+  }
+
+  return <div className="modal-backdrop" role="presentation">
+    <section className="avatar-crop-dialog" role="dialog" aria-modal="true" aria-labelledby="avatar-crop-title">
+      <div className="edit-modal-heading"><h2 id="avatar-crop-title">Cắt ảnh đại diện</h2><button className="modal-close" type="button" onClick={onCancel} aria-label="Đóng">×</button></div>
+      <p className="muted">Kéo ảnh để chọn vùng vuông sẽ hiển thị làm avatar.</p>
+      {previewUrl && <div className="avatar-crop-viewport" style={{ width: viewportSize, height: viewportSize }}
+        onPointerDown={(event) => { if (!imageSize) return; event.currentTarget.setPointerCapture(event.pointerId); drag.current = { x: event.clientX, y: event.clientY, offsetX: offset.x, offsetY: offset.y }; }}
+        onPointerMove={(event) => { if (!drag.current) return; setOffset(clampOffset(drag.current.offsetX + event.clientX - drag.current.x, drag.current.offsetY + event.clientY - drag.current.y)); }}
+        onPointerUp={() => { drag.current = null; }} onPointerCancel={() => { drag.current = null; }}>
+        <img src={previewUrl} alt="Xem trước ảnh đại diện" draggable="false"
+          onLoad={(event) => { const image = { width: event.currentTarget.naturalWidth, height: event.currentTarget.naturalHeight }; setImageSize(image); const fit = Math.max(viewportSize / image.width, viewportSize / image.height); setOffset({ x: (viewportSize - image.width * fit) / 2, y: (viewportSize - image.height * fit) / 2 }); }}
+          onError={() => setImageSize({ error: true })}
+          style={{ width: renderedWidth, height: renderedHeight, left: offset.x, top: offset.y }} />
+        <div className="avatar-crop-guide" />
+      </div>}
+      {imageSize?.error ? <ErrorMessage>Không thể mở ảnh này. Hãy thử một tệp PNG hoặc JPEG hợp lệ.</ErrorMessage> : null}
+      {imageSize && !imageSize.error && <label className="crop-zoom">Phóng to <input type="range" min="1" max="3" step="0.01" value={zoom} onChange={(event) => changeZoom(event.target.value)} /></label>}
+      <div className="modal-actions"><button type="button" onClick={onCancel} disabled={saving}>Hủy</button><button className="primary-button" type="button" onClick={confirmCrop} disabled={!imageSize || imageSize.error || saving}>{saving ? "Đang tải ảnh…" : "Cập nhật avatar"}</button></div>
+    </section>
+  </div>;
+}
+
 function PostCard({ post }) {
   const excerpt =
     post.content?.length > 190
@@ -380,8 +462,9 @@ export function PostDetailPage() {
       </span>
       <h1>{post.title}</h1>
       <div className="article-byline">
-        Cập nhật {formatDate(post.updateAt)}{" "}
-        {currentUser && Number(currentUser.id) === Number(post.userId) && (
+        {post.user?.name && <span className="article-author"><Avatar src={post.user.avatarUrl} name={post.user.name} size={32} /><span>{post.user.name}</span></span>}
+        <span>Cập nhật {formatDate(post.updateAt)}</span>
+        {currentUser && Number(currentUser.id) === Number(post.user?.id ?? post.userId) && (
           <Link to={`/posts/${id}/edit`}>Sửa bài viết ↗</Link>
         )}
       </div>
@@ -408,9 +491,7 @@ export function PostDetailPage() {
         {comments.length ? (
           comments.map((comment) => (
             <div className="comment" key={comment.id}>
-              <div className="comment-avatar">
-                {comment.user?.name?.[0] || "B"}
-              </div>
+              <Avatar className="comment-avatar" src={comment.user?.avatarUrl} name={comment.user?.name || comment.user?.email} />
               <div>
                 <strong>
                   {comment.user?.name || comment.user?.email || "Bạn đọc"}
@@ -461,7 +542,7 @@ export function PostFormPage() {
       getPost(id)
         .then((r) => {
           const post = r.data.data;
-          if (Number(post.userId) !== Number(currentUser.id)) {
+          if (Number(post.user?.id ?? post.userId) !== Number(currentUser.id)) {
             navigate(`/posts/${id}`, { replace: true });
             return;
           }
@@ -743,7 +824,8 @@ export function MyCommentsPage() {
       <ErrorMessage>{error}</ErrorMessage>
       {comments.map((c) => (
         <div className="admin-row" key={c.id}>
-          <div>
+          <div className="my-comment-content">
+            <div className="my-comment-author"><Avatar src={c.user?.avatarUrl} name={c.user?.name || c.user?.email} size={30} /><span>{c.user?.name || c.user?.email || "Bạn"}</span></div>
             <b>{c.post?.title}</b>
             <p>{c.content}</p>
           </div>
@@ -759,32 +841,120 @@ export function MyCommentsPage() {
   );
 }
 export function AccountPage() {
-  const { currentUser } = useAuth();
+  const { currentUser, refreshCurrentUser } = useAuth();
+  const [profile, setProfile] = useState(null);
+  const [form, setForm] = useState({ name: "", address: "" });
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [avatarSaving, setAvatarSaving] = useState(false);
+  const [avatarFile, setAvatarFile] = useState(null);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  useEffect(() => {
+    if (!currentUser?.id) return;
+    getAccount().then((response) => {
+      const data = response.data.data;
+      setProfile(data);
+      setForm({ name: data.name || currentUser.name || "", address: data.address || currentUser.address || "" });
+    }).catch((e) => setError(getErrorMessage(e))).finally(() => setLoading(false));
+  }, [currentUser?.id]);
+
+  async function saveProfile(event) {
+    event.preventDefault();
+    setSaving(true);
+    setError("");
+    setSuccess("");
+    try {
+      await editProfile(form);
+      setProfile((previous) => ({ ...previous, ...form }));
+      setSuccess("Thông tin hồ sơ đã được cập nhật.");
+      try {
+        const refreshed = (await getAccount()).data.data;
+        setProfile((previous) => ({ ...previous, ...Object.fromEntries(Object.entries(refreshed).filter(([, value]) => value != null)) }));
+        await refreshCurrentUser();
+      } catch {
+        // Keep the successfully saved values visible if refreshing the account response fails.
+      }
+    } catch (e) { setError(getErrorMessage(e)); }
+    finally { setSaving(false); }
+  }
+
+  function chooseAvatar(event) {
+    const image = event.target.files?.[0];
+    event.target.value = "";
+    if (!image) return;
+    setError("");
+    setSuccess("");
+    if (!["image/png", "image/jpeg"].includes(image.type)) {
+      setError("Chỉ chấp nhận ảnh PNG hoặc JPEG.");
+      return;
+    }
+    if (image.size > 5 * 1024 * 1024) {
+      setError("Kích thước ảnh tối đa là 5 MB.");
+      return;
+    }
+    setAvatarFile(image);
+  }
+
+  async function uploadAvatar(crop) {
+    if (!avatarFile) return;
+    setError("");
+    setSuccess("");
+    setAvatarSaving(true);
+    try {
+      const body = new FormData();
+      body.append("image", avatarFile);
+      body.append("x", String(crop.x));
+      body.append("y", String(crop.y));
+      body.append("width", String(crop.width));
+      body.append("height", String(crop.height));
+      await changeAvatar(body);
+      setAvatarFile(null);
+      setSuccess("Ảnh đại diện đã được cập nhật.");
+      try {
+        const refreshed = await refreshCurrentUser();
+        setProfile((previous) => ({ ...previous, ...refreshed }));
+      } catch {
+        // Upload succeeded; a profile refresh failure must not present it as an upload failure.
+      }
+    } catch (e) {
+      setError(e.response ? getErrorMessage(e) : `Không thể cập nhật ảnh: ${e.message || "lỗi kết nối"}`);
+    } finally { setAvatarSaving(false); }
+  }
+
   return (
     <section className="form-page auth-page">
       <span className="eyebrow">TÀI KHOẢN CỦA BẠN</span>
-      <h1>Xin chào.</h1>
+      <h1>Hồ sơ cá nhân</h1>
+      {loading ? <Loading /> : <>
+      <div className="profile-header">
+        <Avatar className="profile-avatar" src={profile?.avatarUrl || currentUser.avatarUrl} name={profile?.name || currentUser.name || currentUser.username} size={92} />
+        <div className="profile-header-details"><strong>{profile?.name || currentUser.name || currentUser.username}</strong><span>{profile?.email || currentUser.username}</span>
+          <span className="profile-header-address">{profile?.address || currentUser.address || "Chưa cập nhật địa chỉ"}</span>
+          <small className="profile-account-id">ID tài khoản: {currentUser.id}</small>
+          <label className="avatar-upload">Chọn ảnh<input type="file" accept="image/png,image/jpeg" onChange={chooseAvatar} disabled={avatarSaving} /></label>
+          <small>Ảnh PNG/JPEG, tối đa 5 MB. Bạn có thể kéo và phóng to ảnh để chọn vùng cắt.</small>
+        </div>
+      </div>
+      <form className="editor-form profile-form" onSubmit={saveProfile}>
+        <label>Tên hiển thị<input required maxLength={255} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></label>
+        <label>Địa chỉ<input required maxLength={255} value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} /></label>
+        <label>Email<input value={profile?.email || currentUser.username} disabled /></label>
+        <ErrorMessage>{error}</ErrorMessage>{success && <p className="success">{success}</p>}
+        <button className="primary-button" disabled={saving}>{saving ? "Đang lưu…" : "Lưu hồ sơ ↗"}</button>
+      </form>
       <div className="account-card">
         <div>
-          <small>EMAIL / TÊN ĐĂNG NHẬP</small>
-          <strong>{currentUser.username}</strong>
-        </div>
-        <div>
-          <small>ID TÀI KHOẢN</small>
-          <strong>{currentUser.id}</strong>
-        </div>
-        <div>
           <small>VAI TRÒ</small>
-          <strong>{currentUser.role}</strong>
+          <strong>{roleLabel(currentUser.role)}</strong>
         </div>
       </div>
       <div className="account-links">
         <Link to="/my-comments">Xem bình luận của tôi ↗</Link>
         <Link to="/posts/new">Viết bài mới ↗</Link>
       </div>
-      <p className="muted">
-        Backend hiện không cung cấp API sửa thông tin hồ sơ.
-      </p>
+      </>}
+      {avatarFile && <AvatarCropDialog file={avatarFile} onCancel={() => setAvatarFile(null)} onConfirm={uploadAvatar} saving={avatarSaving} />}
     </section>
   );
 }
